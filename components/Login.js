@@ -1,5 +1,10 @@
-/*
-*/
+/**
+ * Duc Thanh Nguyen
+ * Music Application
+ * https://github.com/ducthanh512/MusicAPP.git
+ * @flow
+ */
+
 import React, { Component } from 'react';
 import {
     Text, StyleSheet, View, Image,
@@ -28,7 +33,18 @@ class Login extends Component {
                                     placeholderTextColor="rgba(255,255,255,0.8)"
                                     keyboardType='email-address'
                                     returnKeyType='next'
-                                    autoCorrect={false}></TextInput>
+                                    autoCorrect={false}
+                                    onSubmitEditing={() => this.refs.txtPassword.focus()}
+                                ></TextInput>
+                                <TextInput style={styles.input}
+                                    placeholder="Enter password"
+                                    placeholderTextColor="rgba(255,255,255,0.8)"
+                                    secureTextEntry={true}
+                                    returnKeyType='go'
+                                    ref="txtPassword"></TextInput>
+                                <TouchableOpacity style={styles.buttonContainer}>
+                                    <Text style={styles.buttonText}>SIGN IN</Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -75,7 +91,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.2)',
         color: '#FFF',
         paddingHorizontal: 10,
+        marginBottom: 20,
 
+    },
+    buttonContainer: {
+        backgroundColor: "#f7c744",
+        paddingVertical: 15,
+    },
+    buttonText:{
+        textAlign: 'center',
+        color: 'rgb(32,53,70)',
+        fontWeight: 'bold',
+        fontSize: 18
     }
 
 })

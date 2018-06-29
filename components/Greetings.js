@@ -1,5 +1,10 @@
-/*
-*/
+/**
+ * Duc Thanh Nguyen
+ * Music Application
+ * https://github.com/ducthanh512/MusicAPP.git
+ * @flow
+ */
+
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 
