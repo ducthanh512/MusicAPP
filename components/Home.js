@@ -6,39 +6,59 @@
  */
 
 import React, { Component } from 'react';
+import Button from 'react-native-button';
 import {
     Container, Text, Content, Icon,
-    Card, CardItem, Thumbnail, Body, Left, Right, Button
+    Card, CardItem, Thumbnail, Body, Left, Right
 } from 'native-base';
 import { Platform, Image, StyleSheet, View } from 'react-native';
+import {SONGLISTSCREEN} from './../constants/actionType';
 import CardComponent from './CardComponent';
 import Banner from './Banner';
-import BannerContainer from './../constainers/BannerContainer';
+import BannerContainer from './../containers/BannerContainer';
 import PlayListFragment from './../components/PlayListFragment';
-import PlayListContainer from './../constainers/PlayListContainer';
+import PlayListContainer from './../containers/PlayListContainer';
+import TopicGenreFragment from './../components/TopicGenreFragment';
+import TopicGenreContainer from './../containers/TopicGenreContainer';
+import AlbumFragment from './../components/AlbumFragment';
+import AlbumContainer from './../containers/AlbumContainer';
+import FavouriteSongFragment from './../components/FavouriteSongFragment';
+import FavouriteSongContainer from './../containers/FavouriteSongContainer';
 
 class Home extends Component {
     static navigationOptions = {
+        header: null ,
         title: 'Home',
         tabBarIcon: ({ tintColor }) => {
             return <Icon name={Platform.OS === 'ios' ? 'ios-home-outline' : 'md-home'} style={{ color: tintColor }}></Icon>
         }
     }
     render() {
+        const {navigation} = this.props;
         return (<Container>
+
             <Content>
                 <Card>
                     <CardItem cardBody>
-                        <BannerContainer />
+                        <BannerContainer navigation ={navigation} />
                     </CardItem>
                     <CardItem cardBody>
-                        <PlayListContainer/>
+                        <PlayListContainer />
                     </CardItem>
                     <CardItem cardBody>
-                        <View style={{height: 1000}}></View>
+                        <TopicGenreContainer />
+                    </CardItem>
+                    <CardItem cardBody>
+                        <AlbumContainer />
+                    </CardItem>
+                    <CardItem cardBody>
+                        <FavouriteSongContainer />
                     </CardItem>
                 </Card>
+
             </Content>
+
+
         </Container >
 
         );

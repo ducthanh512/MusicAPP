@@ -10,35 +10,16 @@ import { Text, Platform, Image, View } from 'react-native';
 import PlayList from './PlayList';
 
 class PlayListFragment extends Component {
-
     constructor(props) {
         super(props)
-        this.state = {
-            playlistServer: []
-        }
-
-    }
-
-    componentWillReceiveProps(previousProps) {
-        var playlists = previousProps.playlists;
-        this.setState({
-            playlistServer: playlists,
-        });
     }
 
     componentDidMount() {
-
-          this.refreshDataFromServer();
-
-    }
-    refreshDataFromServer = () => {
-        this.props.getPlaylists();
+          this.props.getPlaylists();
     }
 
     render() {
         var {playlists} = this.props;
-        console.log('playlists', playlists);
-
         return (
             <View style={{ flex: 1 }}>
                 <Text

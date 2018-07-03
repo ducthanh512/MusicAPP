@@ -5,14 +5,19 @@
  * @flow
  */
 import {call, all,takeEvery} from 'redux-saga/effects';
-import {watchFetchQuestions,watchAddNewQuestion} from './questionsSaga';
 import{watchFetchAdverts} from './advertSaga';
 import {watchFetchPlaylists} from './playlistSaga';
+import {watchFetchTopicGenres} from './topicgenreSaga';
+import {watchFetchAlbums} from './albumSaga';
+import {watchFavouritesongs} from './favouritesongSaga';
 
 export default function* rootSaga(){
     yield all([
         call(watchFetchAdverts),
-        call(watchFetchPlaylists)
+        call(watchFetchPlaylists),
+        call(watchFetchTopicGenres),
+        call(watchFetchAlbums),
+        call(watchFavouritesongs),
       ])
 
     // yield [

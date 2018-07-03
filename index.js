@@ -4,6 +4,9 @@ import App from './App';
 import Splash from './components/Splash';
 import Login from './components/Login';
 import PlayList from './components/PlayList';
+import TopicGenreFragment from './components/TopicGenreFragment';
+import SongList from './components/common/SongList';
+import Main from './components/Main';
 
 import { createStore,applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -18,38 +21,11 @@ const sagaMiddleware = createSagaMiddleware();
 let store = createStore(appReducers,applyMiddleware(sagaMiddleware));
 const MusicApp = () => (
     <Provider store={store}>
-        <App />
+        <Main />
     </Provider>
 );
 
 sagaMiddleware.run(rootSaga);
 
 AppRegistry.registerComponent('MusicApp', () => MusicApp);
-
-
-
-
-class Main extends Component{
-    constructor(props){
-        super(props);
-        this.state ={currentScreen: 'Splash'}
-
-    }
-    componentDidMount(){
-        setTimeout(()=>{
-            this.setState({currentScreen: 'Login'})
-            console.log('after 3 seconds');
-        },3000)
-    }
-
-    componentWillUnmount(){
-
-    }
-
-    render(){
-        const {currentScreen} = this.state;
-        let mainScreen = currentScreen ==='Splash' ? <Splash/> : <Login/>
-        return mainScreen;
-    }
-}
 

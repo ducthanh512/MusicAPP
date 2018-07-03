@@ -14,10 +14,15 @@ import {
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import Main from './components/Main';
+import SongList from './components/common/SongList';
+import Home from './components/Home'
 
 const Navigator = createStackNavigator({
-  Main: {
-    screen: Main
+  Home: {
+    screen: Home
+  },
+  SongList: {
+    screen: SongList
   }
 });
 

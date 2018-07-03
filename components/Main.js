@@ -3,12 +3,13 @@
 import { Container, Text, Content } from 'native-base';
 import { Icon } from 'native-base';
 import React, { Component } from 'react';
-import { createBottomTabNavigator  } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 import { Platform } from 'react-native';
 
 
 import Home from './Home';
 import Search from './Search';
+import NavigatorPage from './NavigatorPage';
 
 /**
  * Duc Thanh Nguyen
@@ -19,8 +20,8 @@ import Search from './Search';
 
 import { YellowBox } from 'react-native';
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
-YellowBox.ignoreWarnings(['TabNavigator is deprecated']);
-YellowBox.ignoreWarnings(['Method `jumpToIndex`']);
+// YellowBox.ignoreWarnings(['TabNavigator is deprecated']);
+// YellowBox.ignoreWarnings(['Method `jumpToIndex`']);
 //console.disableYellowBox = true; 
 
 export default class Main extends Component {
@@ -36,19 +37,30 @@ export default class Main extends Component {
         //     style={{ paddingRight: 10 }} />
     }
     render() {
-        return <MainNavigator>
-            <Text>My main Screen</Text>
-        </MainNavigator>;
+
+        const { navigation } = this.props;
+        console.log(JSON.stringify(this.props.mainNavigation));
+        return <MainNavigator />;
     }
 }
-const MainNavigator = createBottomTabNavigator ({
-    Home: {
-        screen: Home
-    },
-    Search: {
-        screen: Search
-    },
-}, {
+const MainNavigator = createBottomTabNavigator(
+
+    {
+
+        NavigatorPage: {
+            screen: NavigatorPage
+        },
+
+        // NavigatorPage: props =>
+        //   <NavigatorPage
+        //     {...props}
+        //     style={{ borderTopColor: '#605F60' }}
+        //   />,
+
+        Search: {
+            screen: Search
+        },
+    }, {
         animationEnabled: true,
         swipeEnabled: false,
         tabBarPosition: 'bottom',

@@ -10,9 +10,9 @@ import {put,takeLatest,takeEvery} from 'redux-saga/effects';
 import {Api} from './Api';
 
 function* fetchPlaylists(){
-    console.log('fetchPlaylists saga');
+    const apiGetPlaylists = "https://musicappservice.herokuapp.com/music/playlist"
     try{
-        const receivedPlaylists = yield Api.getPlaylistsFromApi();
+        const receivedPlaylists = yield Api.getApi(apiGetPlaylists);
         yield put({type: Types.FETCH_PLAYLISTS_SUCCEEDED, receivedPlaylists:receivedPlaylists})
 
     }catch(error){

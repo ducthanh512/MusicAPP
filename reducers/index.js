@@ -5,11 +5,13 @@
  * @flow
  */
 import {combineReducers} from 'redux';
-import questionsReducer from './questionsReducer';
 import advertReducer from './advertReducer';
 import playlistReducer from './playlistReducer';
+import topicGenreReducer from './topicGenreReducer';
+import albumReducer from './albumReducer';
+import favouritesongReducer from './favouritesongReducer';
 const appReducers = combineReducers({
-    advertReducer,playlistReducer
+    advertReducer,playlistReducer,topicGenreReducer,albumReducer,favouritesongReducer,
 })
 
 export default appReducers;

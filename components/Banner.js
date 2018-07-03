@@ -28,33 +28,14 @@ export default class Banner extends Component {
 
     componentDidMount() {
 
-          this.refreshDataFromServer();
-
-    }
-    refreshDataFromServer = () => {
         this.props.getAdverts();
-        // this.props.getAdverts().then((questions) => {
-        //     this.setState({
-        //         advertServer: adverts,
-        //     });
-
-
-
-        // getQuestionFromServer().then((questions) => {
-        //     this.setState({
-        //         questionServer: questions,
-        //     });
-        // }).catch((error)=> {
-
-        //     this.setState({
-        //         questionServer: [],
-        //     })
-        // });
-        // }
     }
+
     render() {
-        var { adverts } = this.props;
+        var { adverts,navigation } = this.props;
         var pageCount = adverts && adverts.length > 0 ? adverts.length : 1;
+
+        console.log('Banner Render ', JSON.stringify(this.props));
         return (
             <View style={{ flex: 1 }}>
                 <IndicatorViewPager
@@ -62,7 +43,7 @@ export default class Banner extends Component {
                     indicator={this._renderDotIndicator(pageCount)}>
                     {adverts.map((advert, index) => (
                         <View key={index}>
-                            <Advert advert={advert} />
+                            <Advert advert={advert} navigation ={navigation} />
                         </View>
                     ))}
                 </IndicatorViewPager>

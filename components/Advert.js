@@ -5,22 +5,23 @@
  * @flow
  */
 
-import { StyleSheet, View, Text, Image, Platform } from 'react-native';
+import { StyleSheet, View, Text, Image, Platform,TouchableOpacity } from 'react-native';
 import React, { Component } from 'react';
 import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
 import { red } from 'ansi-colors';
-
+import {SONGLISTSCREEN} from './../constants/actionType';
 export default class Advert extends Component {
     render() {
-        var { advert } = this.props;
+        var { advert,navigation } = this.props;
 
         return (
-            <View
+            <TouchableOpacity
                 style={{
                     flex: 1,
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
-                }}>
+                }}
+                onPress={() => {navigation.navigate(SONGLISTSCREEN); }}>
 
                 <View style={{
                     position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, flex: 1,
@@ -52,7 +53,7 @@ export default class Advert extends Component {
                     </View>
                 </View>
                 <View style={{ flex: 3,backgroundColor: 'rgba(0,0,0,0.3)', }} />
-            </View>
+            </TouchableOpacity>
         );
     }
 
