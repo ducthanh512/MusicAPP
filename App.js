@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import Main from './components/Main';
-import SongList from './components/common/SongList';
+import SongListFragment from './components/common/SongListFragment';
 import Home from './components/Home'
 
 const Navigator = createStackNavigator({
@@ -22,7 +22,7 @@ const Navigator = createStackNavigator({
     screen: Home
   },
   SongList: {
-    screen: SongList
+    screen: SongListFragment
   }
 });
 

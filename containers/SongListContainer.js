@@ -8,26 +8,22 @@
 import React , {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchFavouriteSongs,fetchAdvertSongs} from './../actions/index';
-import FavouriteSongFragment from './../components/FavouriteSongFragment';
+import SongListFragment from './../components/common/SongListFragment';
 const mapStateToProps = (state) =>{
     //console.log('state.questionsReducer',state.questionsReducer);
     return {
-        songs : state.favouriteSongReducer,
+        songs : state.songListReducer,
     }
 }
 
 const mapDispatchToProps = (dispatch, props)=>{
     return {
-        getFavouriteSongs: ()=>{
-            dispatch(fetchFavouriteSongs())
-        },
-
         getAdvertSongs:id=>{
-            dispatch(fetchAdvertSongs())
+            dispatch(fetchAdvertSongs(id))
         }
     }
 }
 
-const FavouriteSongContainer = connect(mapStateToProps, mapDispatchToProps)(FavouriteSongFragment)
+const SongListContainer = connect(mapStateToProps, mapDispatchToProps)(SongListFragment)
 
-export default FavouriteSongContainer;
+export default SongListContainer;

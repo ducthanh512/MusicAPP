@@ -18,7 +18,8 @@ import {
 } from 'native-base';
 import { createStackNavigator,StackNavigator } from 'react-navigation';
 import Main from './Main';
-import SongList from './common/SongList';
+import SongListFragment from './common/SongListFragment';
+import SongListContainer from '../containers/SongListContainer';
 import Home from './Home'
 import {HOMESCREEN, SONGLISTSCREEN} from './../constants/actionType';
 
@@ -27,7 +28,7 @@ const Navigator = StackNavigator({
     screen: Home,
   },
   SONGLISTSCREEN: {
-    screen: SongList,
+    screen: SongListContainer,
   }
 },
 {

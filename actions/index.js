@@ -41,3 +41,10 @@ export const fetchFavouriteSongs = () =>{
         type: Types.FETCH_FAVOURITESONGS,
     }
 }
+
+
+export const fetchAdvertSongs = (id) =>{
+    return {
+        type: Types.FETCH_ADVERT_SONGS,id,
+    }
+}

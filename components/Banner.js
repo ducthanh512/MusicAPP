@@ -34,8 +34,6 @@ export default class Banner extends Component {
     render() {
         var { adverts,navigation } = this.props;
         var pageCount = adverts && adverts.length > 0 ? adverts.length : 1;
-
-        console.log('Banner Render ', JSON.stringify(this.props));
         return (
             <View style={{ flex: 1 }}>
                 <IndicatorViewPager

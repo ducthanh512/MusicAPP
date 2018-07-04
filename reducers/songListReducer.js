@@ -6,13 +6,14 @@
  */
 import * as Types from './../constants/actionType';
 var initialState = [];
-const favouriteSongReducer = (state = initialState, action) => {
+const songListReducer = (state = initialState, action) => {
     switch (action.type) {
-        case Types.FETCH_FAVOURITESONGS_SUCCEEDED:
-            state = action.receivedFavouritesongs;
+        case Types.FETCH_ADVERT_SONGS_SUCCEEDED:
+            console.log('new song reducer FETCH_ADVERT_SONGS_SUCCEEDED');
+            state = action.receiveAdvertSongs;
             return [...state]
         default: return [...state]
     }
 }
 
-export default favouriteSongReducer;
+export default songListReducer;

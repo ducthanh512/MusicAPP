@@ -9,7 +9,7 @@ import{watchFetchAdverts} from './advertSaga';
 import {watchFetchPlaylists} from './playlistSaga';
 import {watchFetchTopicGenres} from './topicgenreSaga';
 import {watchFetchAlbums} from './albumSaga';
-import {watchFavouritesongs} from './favouritesongSaga';
+import {watchFavouritesongs,watchAdvertSongs} from './favouritesongSaga';
 
 export default function* rootSaga(){
     yield all([
@@ -18,6 +18,7 @@ export default function* rootSaga(){
         call(watchFetchTopicGenres),
         call(watchFetchAlbums),
         call(watchFavouritesongs),
+        call(watchAdvertSongs)
       ])
 
     // yield [

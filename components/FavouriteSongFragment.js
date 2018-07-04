@@ -22,7 +22,7 @@ class FavouriteSongFragment extends Component {
     }
 
     render() {
-        var { favouriteSongs } = this.props;
+        var { songs } = this.props;
         // console.log('favouriteSongs Render!!', favouriteSongs);
 
         return (
@@ -39,7 +39,7 @@ class FavouriteSongFragment extends Component {
 
                 <View style={{ marginTop: 20 }}>
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {favouriteSongs.map((song, index) => (
+                        {songs.map((song, index) => (
                             <FavouriteSong key={index} song={song} />
                         ))}
                     </ScrollView>

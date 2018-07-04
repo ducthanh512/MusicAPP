@@ -6,7 +6,6 @@
  */
 
 import React, { Component } from 'react';
-import Button from 'react-native-button';
 import {
     Container, Text, Content, Icon,
     Card, CardItem, Thumbnail, Body, Left, Right
@@ -23,7 +22,7 @@ import TopicGenreContainer from './../containers/TopicGenreContainer';
 import AlbumFragment from './../components/AlbumFragment';
 import AlbumContainer from './../containers/AlbumContainer';
 import FavouriteSongFragment from './../components/FavouriteSongFragment';
-import FavouriteSongContainer from './../containers/FavouriteSongContainer';
+import FavouriteSongContainer from '../containers/FavouriteSongContainer';
 
 class Home extends Component {
     static navigationOptions = {
@@ -35,7 +34,7 @@ class Home extends Component {
     }
     render() {
         const {navigation} = this.props;
-        return (<Container>
+        return (<Container style={styles.container}>
 
             <Content>
                 <Card>
@@ -71,7 +70,11 @@ const styles = StyleSheet.create({
 
         flex: 1,
         alignSelf: 'stretch',
-    }
+    },
+    container: {
+        flex: 1,
+        backgroundColor: '#eaeaea',
+      },
 })
 export default Home;
 

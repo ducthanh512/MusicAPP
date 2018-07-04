@@ -5,7 +5,7 @@ import Splash from './components/Splash';
 import Login from './components/Login';
 import PlayList from './components/PlayList';
 import TopicGenreFragment from './components/TopicGenreFragment';
-import SongList from './components/common/SongList';
+import SongListFragment from './components/common/SongListFragment';
 import Main from './components/Main';
 
 import { createStore,applyMiddleware } from 'redux';
