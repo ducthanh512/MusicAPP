@@ -20,16 +20,26 @@ import { createStackNavigator,StackNavigator } from 'react-navigation';
 import Main from './Main';
 import SongListFragment from './common/SongListFragment';
 import SongListContainer from '../containers/SongListContainer';
-import Home from './Home'
-import {HOMESCREEN, SONGLISTSCREEN} from './../constants/actionType';
+import Home from './Home';
+import AudioPlayerFragement from './../components/common/AudioPlayerFragement';
+import {HOMESCREEN, SONGLISTSCREEN,PLAYLISTLAYOUTSCREEN,AUDIOPLAYERSCREEN} from './../constants/actionType';
+
+import GroupContainer from '../containers/GroupContainer';
 
 const Navigator = StackNavigator({
   HOMESCREEN: {
     screen: Home,
   },
+  GROUPSCREEN:{
+    screen: GroupContainer,
+  },
   SONGLISTSCREEN: {
     screen: SongListContainer,
+  },
+  AUDIOPLAYERSCREEN:{
+    screen:AudioPlayerFragement,
   }
+
 },
 {
   style: {

@@ -28,3 +28,21 @@ export function* watchFetchAlbums(){
     yield takeEvery(Types.FETCH_ALBUMS,fetchAlbums);
 }
 
+
+function* fetchAllAlbums(){
+    const apiGetAllAlbums = "https://musicappservice.herokuapp.com/music/allalbums"
+    try{
+        const receivedAllAlbums = yield Api.getApi(apiGetAllAlbums);
+        yield put({type: Types.FETCH_ALL_ALBUMS_SUCCEEDED, receivedAllAlbums,})
+
+    }catch(error){
+        yield put({type:Types.FETCH_FAILED, error})
+    }
+}
+
+
+
+export function* watchFetchAllAlbums(){
+    yield takeEvery(Types.FETCH_ALL_ALBUMS,fetchAllAlbums);
+}
+

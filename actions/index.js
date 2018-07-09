@@ -21,6 +21,28 @@ export const fetchPlaylists = () =>{
     }
 }
 
+export const fetchAllPlaylists = () =>{
+    
+    return {
+        type: Types.FETCH_ALL_PLAYLISTS,
+    }
+}
+
+export const fetchAllGenres = () =>{
+    
+    return {
+        type: Types.FETCH_ALL_GENRE,
+    }
+}
+
+
+export const fetchAllAlbums= () =>{
+    
+    return {
+        type: Types.FETCH_ALL_ALBUMS,
+    }
+}
+
 export const fetchTopicGenres = () =>{
     
     return {
@@ -46,5 +68,37 @@ export const fetchFavouriteSongs = () =>{
 export const fetchAdvertSongs = (id) =>{
     return {
         type: Types.FETCH_ADVERT_SONGS,id,
+    }
+}
+
+export const fetchPlayListSongs = (id) =>{
+    return {
+        type: Types.FETCH_PLAYLIST_SONGS,id,
+    }
+}
+
+export const resetSongList = () =>{
+    return {
+        type: Types.RESET_SONG_LIST,
+    }
+}
+
+export const resetGroup = () =>{
+    return {
+        type: Types.RESET_GROUP,
+    }
+}
+
+
+
+export const fetchGenreSongs = (id) =>{
+    return {
+        type: Types.FETCH_GENRE_SONGS,id,
+    }
+}
+
+export const fetchAlbumSongs = (id) =>{
+    return {
+        type: Types.FETCH_ALBUM_SONGS,id,
     }
 }

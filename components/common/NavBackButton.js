@@ -20,11 +20,11 @@ const NavBackButton = ({ title, pressColorAndroid,navigation }: Props) => (
     >
         <View style={styles.flexRowCentered}>
             <Image
-                style={[styles.icon, { tintColor: '#FFF' }]}
+                style={[styles.icon, { tintColor: '#000' }]}
                 source={require('./../../images/back-icon.png')}
             />
             {Platform.OS === 'ios' &&
-            <Text numberOfLines={1} style={styles.iosText}>{title}</Text>
+            <Text numberOfLines={1} style={styles.iosText}>{this.props.title}</Text>
             }
         </View>
     </TouchableOpacity>

@@ -13,6 +13,10 @@ import {SONGLISTSCREEN} from './../constants/actionType';
 export default class Advert extends Component {
     render() {
         var { advert,navigation } = this.props;
+        var passedData = {
+            "type": "advert",
+            "content" : advert
+        }
 
         return (
             <TouchableOpacity
@@ -21,12 +25,12 @@ export default class Advert extends Component {
                     flexDirection: 'column',
                     justifyContent: 'flex-end',
                 }}
-                onPress={() => {navigation.navigate(SONGLISTSCREEN, advert); }}>
+                onPress={() => {navigation.navigate(SONGLISTSCREEN, passedData); }}>
 
                 <View style={{
                     position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, flex: 1,
                 }}>
-                    <Image source={{ uri: advert.largeImage }}
+                    <Image source={{ uri: advert.image }}
                         style={{ height: null, width: null, flex: 1, backgroundColor: 'transparent', justifyContent: 'center' }} />
                 </View>
                 <View style={{ flex: 67,backgroundColor: 'rgba(0,0,0,0.3)', }} />
@@ -41,7 +45,7 @@ export default class Advert extends Component {
                         width: 80, padding: 2,borderRadius:50
                     }}>
                         <Image style={{ borderRadius:15,overlayColor:'yellow', width: 70, height: 60, aspectRatio: 1, resizeMode: 'contain', padding: 10, marginLeft: 10,}}
-                            source={{ uri: advert.smallImage }}></Image>
+                            source={{ uri: advert.icon }}></Image>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column' }}>
                         <Text style={{

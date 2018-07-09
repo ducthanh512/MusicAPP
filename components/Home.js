@@ -42,16 +42,16 @@ class Home extends Component {
                         <BannerContainer navigation ={navigation} />
                     </CardItem>
                     <CardItem cardBody>
-                        <PlayListContainer />
+                        <PlayListContainer navigation ={navigation} />
                     </CardItem>
                     <CardItem cardBody>
-                        <TopicGenreContainer />
+                        <TopicGenreContainer navigation ={navigation}/>
                     </CardItem>
                     <CardItem cardBody>
-                        <AlbumContainer />
+                        <AlbumContainer navigation ={navigation}/>
                     </CardItem>
                     <CardItem cardBody>
-                        <FavouriteSongContainer />
+                        <FavouriteSongContainer navigation ={navigation} />
                     </CardItem>
                 </Card>
 

@@ -7,12 +7,16 @@
 
 import React, { Component } from 'react';
 import { Text, Platform, View, ScrollView, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground  } from 'react-native';
-
+import {SONGLISTSCREEN} from './../constants/actionType';
 class PlayList extends Component {
 
     render() {
-        var { playlist } = this.props;
-       // alert(playlist.image);
+        var { playlist,navigation } = this.props;
+        var passedData = {
+            "type": "playlist",
+            "content" : playlist
+        }
+
         let screenwWidth = Dimensions.get('window').width;
         let constentWidth = screenwWidth*75/100;
         return (
@@ -20,7 +24,7 @@ class PlayList extends Component {
                 <View style={{ flex: 1}}>
                     <View style={{ marginBottom: 2, flex:1, marginRight: 8, marginLeft: 8, }}>
                         <TouchableOpacity style={{ height: 110, marginTop: 5, position: 'relative' }}
-                            onPress={() => { }}>
+                            onPress={() => {navigation.navigate(SONGLISTSCREEN, passedData);  }}>
                             <ImageBackground 
                                 style={{ height: null, width: null, flex: 1,zIndex:1 }}
                                 source={{ uri: playlist.image }} />

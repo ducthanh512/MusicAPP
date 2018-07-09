@@ -6,7 +6,8 @@
  */
 
 import React, { Component } from 'react';
-import { Text, Platform, Image, View, ScrollView } from 'react-native';
+import { Text, Platform, Image, View, ScrollView,TouchableOpacity } from 'react-native';
+import {GROUPSCREEN,SONGLISTSCREEN} from './../constants/actionType';
 import Album from './Album';
 
 
@@ -22,9 +23,11 @@ class AlbumFragment extends Component {
     }
 
     render() {
-        var { albums } = this.props;
-       //  console.log('AlbumFragment Render!!', albums);
-
+        var { albums, navigation } = this.props;
+        //  console.log('AlbumFragment Render!!', albums);
+        var passedData = {
+            "type": "album"
+        }
         return (
             <View style={{ flex: 1, flexDirection: 'column', marginTop: 15 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -32,11 +35,12 @@ class AlbumFragment extends Component {
                         style={{ fontSize: 25, color: '#3e3b3b', alignSelf: 'center', marginLeft: 20 }}>
                         Album
                     </Text>
-
-                    <Text
-                        style={{ fontSize: 18, color: '#913677', alignSelf: 'center', marginRight: 20 }}>
-                        View more
+                    <TouchableOpacity onPress={() => { navigation.navigate(GROUPSCREEN, passedData); }}>
+                        <Text
+                            style={{ fontSize: 18, color: '#913677', alignSelf: 'center', marginRight: 20 }}>
+                            View more
                  </Text>
+                    </TouchableOpacity>
 
                 </View>
 
@@ -44,7 +48,7 @@ class AlbumFragment extends Component {
                 <View style={{ marginTop: 20 }}>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         {albums.map((album, index) => (
-                            <Album key={index} album={album} />
+                            <Album key={index} album={album} navigation={navigation} />
                         ))}
                     </ScrollView>
                 </View>

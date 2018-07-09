@@ -7,7 +7,7 @@
  */
 import React , {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchFavouriteSongs,fetchAdvertSongs} from './../actions/index';
+import {resetSongList,fetchFavouriteSongs,fetchAdvertSongs,fetchPlayListSongs,fetchGenreSongs,fetchAlbumSongs} from './../actions/index';
 import SongListFragment from './../components/common/SongListFragment';
 const mapStateToProps = (state) =>{
     //console.log('state.questionsReducer',state.questionsReducer);
@@ -18,9 +18,21 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch, props)=>{
     return {
+        resetSongList:()=>{
+            dispatch(resetSongList());
+        },
         getAdvertSongs:id=>{
             dispatch(fetchAdvertSongs(id))
-        }
+        },
+        getPlayListSongs:id=>{
+            dispatch(fetchPlayListSongs(id))
+        },
+        getGenreSongs:id=>{
+            dispatch(fetchGenreSongs(id))
+        },
+        getAlbumSongs:id=>{
+            dispatch(fetchAlbumSongs(id))
+        },
     }
 }
 

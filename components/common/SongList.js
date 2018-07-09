@@ -14,10 +14,10 @@ class SongList extends Component {
 
     render() {
         var { song, index } = this.props;
-        console.log(this.props);
+        //console.log('SongList', song);
         return (
 
-            <TouchableOpacity style={{ flex: 1, marginBottom: 10, padding: 10, backgroundColor: 'white' }}
+            <TouchableOpacity style={{ flex: 1, marginBottom: 10, padding: 10, backgroundColor: 'transparent' }}
                 onPress={() => { }}>
 
                 <View style={{ flex: 1, flexDirection: 'column' }}>

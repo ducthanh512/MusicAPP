@@ -22,8 +22,8 @@ class FavouriteSongFragment extends Component {
     }
 
     render() {
-        var { songs } = this.props;
-        // console.log('favouriteSongs Render!!', favouriteSongs);
+        var { songs, navigation } = this.props;
+         //console.log('FavouriteSongFragment Render!!', navigation);
 
         return (
             <View style={{ flex: 1, flexDirection: 'column', marginTop: 15 }}>
@@ -40,7 +40,7 @@ class FavouriteSongFragment extends Component {
                 <View style={{ marginTop: 20 }}>
                     <ScrollView showsVerticalScrollIndicator={false}>
                         {songs.map((song, index) => (
-                            <FavouriteSong key={index} song={song} />
+                            <FavouriteSong key={index} navigation={navigation} song={song} />
                         ))}
                     </ScrollView>
                 </View>

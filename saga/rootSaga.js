@@ -6,10 +6,10 @@
  */
 import {call, all,takeEvery} from 'redux-saga/effects';
 import{watchFetchAdverts} from './advertSaga';
-import {watchFetchPlaylists} from './playlistSaga';
-import {watchFetchTopicGenres} from './topicgenreSaga';
-import {watchFetchAlbums} from './albumSaga';
-import {watchFavouritesongs,watchAdvertSongs} from './favouritesongSaga';
+import {watchFetchPlaylists,watchFetchAllPlaylists} from './playlistSaga';
+import {watchFetchTopicGenres,watchFetchAllGenres} from './topicgenreSaga';
+import {watchFetchAlbums,watchFetchAllAlbums} from './albumSaga';
+import {watchFavouritesongs,watchAdvertSongs,watchPlayListSongs,watchGenreSongs,watchAlbumSongs} from './songSaga';
 
 export default function* rootSaga(){
     yield all([
@@ -18,7 +18,13 @@ export default function* rootSaga(){
         call(watchFetchTopicGenres),
         call(watchFetchAlbums),
         call(watchFavouritesongs),
-        call(watchAdvertSongs)
+        call(watchAdvertSongs),
+        call(watchPlayListSongs),
+        call(watchFetchAllPlaylists),
+        call(watchGenreSongs),
+        call(watchAlbumSongs),
+        call(watchFetchAllGenres),
+        call(watchFetchAllAlbums)
       ])
 
     // yield [

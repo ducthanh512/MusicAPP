@@ -30,3 +30,21 @@ export function* watchFetchTopicGenres() {
     yield takeEvery(Types.FETCH_TOPICGENRES, fetchTopicGenres);
 }
 
+
+function* fetchAllGenres(){
+    const apiGetAllGenres = "https://musicappservice.herokuapp.com/music/allgenres"
+    try{
+        const receivedAllGenres = yield Api.getApi(apiGetAllGenres);
+        yield put({type: Types.FETCH_ALL_GENRE_SUCCEEDED, receivedAllGenres,})
+
+    }catch(error){
+        yield put({type:Types.FETCH_FAILED, error})
+    }
+}
+
+
+
+export function* watchFetchAllGenres(){
+    yield takeEvery(Types.FETCH_ALL_GENRE,fetchAllGenres);
+}
+

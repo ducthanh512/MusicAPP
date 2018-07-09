@@ -109,7 +109,7 @@ export default class rotateImage extends Component {
         ]}>
         </Animated.View>
         <Animated.Image
-          source={require('./images/tiger.jpg')}
+          source={require('./../../images/tiger.jpg')}
           style={[styles.imageView, 
             // { left: this.state.xValue }
      

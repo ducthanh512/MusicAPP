@@ -6,7 +6,8 @@
  */
 
 import React, { Component } from 'react';
-import { Text, Platform, Image, View, ScrollView } from 'react-native';
+import { Text, Platform, Image, View, ScrollView, TouchableOpacity } from 'react-native';
+import {GROUPSCREEN,SONGLISTSCREEN} from './../constants/actionType';
 import PlayList from './PlayList';
 import TopicGenre from './TopicGenre';
 
@@ -22,7 +23,10 @@ class TopicGenreFragment extends Component {
     }
 
     render() {
-        var { topicGenres } = this.props;
+        var { topicGenres, navigation } = this.props;
+        var passedData = {
+            "type": "topicGenre"
+        }
         // console.log('topicGenres Render!!', topicGenres);
 
         return (
@@ -32,11 +36,12 @@ class TopicGenreFragment extends Component {
                         style={{ fontSize: 25, color: '#3e3b3b', alignSelf: 'center', marginLeft: 20 }}>
                         Topic and Genre
                     </Text>
-
-                    <Text
-                        style={{ fontSize: 18, color: '#913677', alignSelf: 'center', marginRight: 20 }}>
-                        View more
+                    <TouchableOpacity onPress={() => { navigation.navigate(GROUPSCREEN, passedData); }}>
+                        <Text
+                            style={{ fontSize: 18, color: '#913677', alignSelf: 'center', marginRight: 20 }}>
+                            View more
                  </Text>
+                    </TouchableOpacity>
 
                 </View>
 
@@ -44,7 +49,7 @@ class TopicGenreFragment extends Component {
                 <View style={{ marginTop: 20 }}>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         {topicGenres.map((topicGenre, index) => (
-                            <TopicGenre key={index} topicGenre={topicGenre} />
+                            <TopicGenre key={index} topicGenre={topicGenre} navigation={navigation} />
                         ))}
                     </ScrollView>
                 </View>

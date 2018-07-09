@@ -11,13 +11,15 @@ import topicGenreReducer from './topicGenreReducer';
 import albumReducer from './albumReducer';
 import favouriteSongReducer from './favouriteSongReducer';
 import songListReducer from './songListReducer';
+import groupReducer from './groupReducer';
 const appReducers = combineReducers({
     advertReducer,
     playlistReducer,
     topicGenreReducer,
     albumReducer,
     favouriteSongReducer,
-    songListReducer
+    songListReducer,
+    groupReducer
 })
 
 export default appReducers;
