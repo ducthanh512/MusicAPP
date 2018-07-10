@@ -13,7 +13,7 @@ type Props = {
   //  pressColorAndroid?: ColorPropType
 };
 
-const NavBackButton = ({ title, pressColorAndroid,navigation }: Props) => (
+const NavBackButton = ({navigation }: Props) => (
     <TouchableOpacity
         onPress={()=>{navigation.goBack()}}
         style={styles.container}
@@ -23,9 +23,6 @@ const NavBackButton = ({ title, pressColorAndroid,navigation }: Props) => (
                 style={[styles.icon, { tintColor: '#000' }]}
                 source={require('./../../images/back-icon.png')}
             />
-            {Platform.OS === 'ios' &&
-            <Text numberOfLines={1} style={styles.iosText}>{this.props.title}</Text>
-            }
         </View>
     </TouchableOpacity>
 );

@@ -60,7 +60,7 @@ class AudioPlayerFragement extends Component {
 
     onPressButtonPlay = (song) => {
         // alert('dcb');
-        player = new SoundPlayer('https://dc694.4shared.com/img/NoH8deB1ee/b8c1d5b1/dlink__2Fdownload_2FNoH8deB1ee_2FGi_5FNgi_5FYu_5FC_5F-_5FH_5FNgc_5FH_5F-_5FGi_5FNgi.MP3_3Fsbsr_3De555d630b8f7b8f29333f655d9b0d92f9e3_26bip_3DMTU3LjIxMS42Ny40Mg_26lgfp_3D52_26bip_3DMTU3LjIxMS42Ny40Mg/preview.mp3', null, (error) => {
+        player = new SoundPlayer('https://s1.mp3.aka.zdn.vn/e7563f83e7c70e9957d6/727637092126384063?authen=exp=1531284626~acl=/e7563f83e7c70e9957d6/*~hmac=888de179e19f474fef41fcbc8cfec2dc&filename=1234-Chi-Dan.mp3', null, (error) => {
             if (error) {
                 Toast.show('Error when init SoundPlayer :(((');
                 console.log('hhe1', error);
