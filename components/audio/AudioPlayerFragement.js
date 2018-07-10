@@ -6,11 +6,14 @@
  */
 
 import React, { Component } from 'react';
-import { Text, Platform, View, ScrollView, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground, Slider, ToastAndroid } from 'react-native';
-import NavBackButton from './NavBackButton';
+import { Text, Platform, View, ScrollView, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground, Slider, AppState,StyleSheet } from 'react-native';
+import NavBackButton from './../common/NavBackButton';
 import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
-import DiskAnimation from './DiskAnimation';
-import SongList from './SongList';
+import DiskAnimation from '../audio/DiskAnimation';
+import SongList from './../common/SongList';
+import Toast from 'react-native-simple-toast';
+import CountTime from './CountTime';
+import SeekBar from './SeekBar';
 var SoundPlayer = require('react-native-sound');
 var player = null;
 class AudioPlayerFragement extends Component {
@@ -23,11 +26,24 @@ class AudioPlayerFragement extends Component {
             SliderValue: 0,
             pause: false,
             duration: '00:00',
-            currentTime : '00:00',
+            currentTime: '00:00',
+            flagState :false,
+            appState: AppState.currentState,
         }
     }
 
+
+
+    componentWillUnmount() {
+        if (player != null) {
+            player.stop();
+            //   this.setState({ pause: false });
+        }
+    }
+
+
     componentDidMount() {
+
         var song = this.props.navigation.state.params.content;
         this.onPressButtonPlay(song);
     }
@@ -36,93 +52,87 @@ class AudioPlayerFragement extends Component {
         return <PagerDotIndicator pageCount={2} />;
     }
 
-    onPressButtonPlay = (song) => {
-     // alert('dcb');
-        player = new SoundPlayer('https://dc694.4shared.com/img/NoH8deB1ee/b8c1d5b1/dlink__2Fdownload_2FNoH8deB1ee_2FGi_5FNgi_5FYu_5FC_5F-_5FH_5FNgc_5FH_5F-_5FGi_5FNgi.MP3_3Fsbsr_3De555d630b8f7b8f29333f655d9b0d92f9e3_26bip_3DMTU3LjIxMS42Ny40Mg_26lgfp_3D52_26bip_3DMTU3LjIxMS42Ny40Mg/preview.mp3', SoundPlayer.MAIN_BUNDLE, (error) => {
-            if (error)
-                ToastAndroid.show('Error when init SoundPlayer :(((', ToastAndroid.SHORT);
-            else {
-                this.setState({
-                    duration: this.millisToMinutesAndSeconds(player.getDuration() * 1000),
-                })
-                console.log('hhe1');
-                this.onSetCurrentTime();
-                player.play((success) => {
-                    if (!success)
-                        ToastAndroid.show('Error when play SoundPlayer :(((', ToastAndroid.SHORT);
-                });
-            }
-        });
-
-    }
-
-    SliderValueToTime= (sliderValue) =>{
-
-        var seconds= sliderValue*player.getDuration();
-        player.setCurrentTime(seconds);
-        this.setState({
-            currentTime:  this.millisToMinutesAndSeconds(seconds * 1000),
-            SliderValue: sliderValue
-        })
-    }
-
-    timeToSliderValue = (seconds)=>{
-        return seconds/player.getDuration();
-    }
-
-    onSetCurrentTime = () =>{
-        console.log('hhe');
-        this.interval = setInterval( () => { 
-            player.getCurrentTime((seconds) => {
-              //  console.log('slider ',seconds, this.timeToSliderValue(seconds));
-                this.setState({
-                    currentTime:  this.millisToMinutesAndSeconds(seconds * 1000),
-                    SliderValue: this.timeToSliderValue(seconds),
-                })
-             }, 300);
-
-            });
-
-    }
-
-    onPressButtonPause = (song) => {
-        if (player != null) {
-            if (this.state.pause) // play resume
-                player.play((success) => {
-                    if (!success)
-                        ToastAndroid.show('Error when play SoundPlayer :(((', ToastAndroid.SHORT);
-                });
-            else player.pause();
-            this.setState({ pause: !this.state.pause });
-           
-
-        }
-
-
-    }
-
     millisToMinutesAndSeconds = (millis) => {
         var minutes = Math.floor(millis / 60000);
         var seconds = ((millis % 60000) / 1000).toFixed(0);
         return (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
 
+    onPressButtonPlay = (song) => {
+        // alert('dcb');
+        player = new SoundPlayer('https://dc694.4shared.com/img/NoH8deB1ee/b8c1d5b1/dlink__2Fdownload_2FNoH8deB1ee_2FGi_5FNgi_5FYu_5FC_5F-_5FH_5FNgc_5FH_5F-_5FGi_5FNgi.MP3_3Fsbsr_3De555d630b8f7b8f29333f655d9b0d92f9e3_26bip_3DMTU3LjIxMS42Ny40Mg_26lgfp_3D52_26bip_3DMTU3LjIxMS42Ny40Mg/preview.mp3', null, (error) => {
+            if (error) {
+                Toast.show('Error when init SoundPlayer :(((');
+                console.log('hhe1', error);
+            }
+            else {
+                this.setState({
+                    duration: this.millisToMinutesAndSeconds(player.getDuration() * 1000),
+                })
 
+                //   this.onSetCurrentTime();
+                player.play((success) => {
+                    if (!success) {
+                        Toast.show('Error when play SoundPlayer :(((');
+                        console.log('hhe1', error);
+                    }
+                });
+            }
+        });
+
+    }
+
+    // SliderValueToTime= (sliderValue) =>{
+
+    //     var seconds= sliderValue*player.getDuration();
+    //     player.setCurrentTime(seconds);
+    //     this.setState({
+    //         currentTime:  this.millisToMinutesAndSeconds(seconds * 1000),
+    //         SliderValue: sliderValue
+    //     })
+    // }
+
+
+
+    onPressButtonPause = (song) => {
+        if (player != null) {
+            if (this.state.pause) // play resume
+                player.play((success) => {
+                    if (!success)
+                        Toast.show('Error when play SoundPlayer :(((');
+                });
+            else player.pause();
+            this.setState({ pause: !this.state.pause });
+        }
+
+    }
+
+
+    onChangeSeekBarHandle = (ChangedValue) => {
+        console.log('onChangeSeekBarHandle AudioPlayerFragement', ChangedValue);
+        var seconds = ChangedValue * player.getDuration();
+        player.setCurrentTime(seconds);
+        this.setState({ flagState: !this.state.flagState });
+        // this.setState({
+        //     currentTime: this.millisToMinutesAndSeconds(seconds * 1000),
+        //     SliderValue: sliderValue
+        // })
+    }
 
     render() {
+       
         var { navigation } = this.props;
-        var { pause, duration,currentTime } = this.state;
+        var { pause, duration, currentTime } = this.state;
         var song = this.props.navigation.state.params.content;
 
         var playpausse = !pause ? require('./../../images/iconpause.png') : require('./../../images/iconplay.png');
 
+        console.log('AudioPlayerFragement Render pause:', pause);
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#4e1676' }}>
                 <NavBackButton navigation={navigation} title='Music App' />
 
                 <View style={{ marginTop: 40, flex: 80, }}>
-
-
                     <IndicatorViewPager
                         style={{ height: null, flex: 1 }}
                         indicator={this._renderDotIndicator()}>
@@ -134,57 +144,45 @@ class AudioPlayerFragement extends Component {
                         </View>
                         <View>
 
-                            <DiskAnimation song={song} />
+                            <DiskAnimation song={song} pause={pause} />
                         </View>
                     </IndicatorViewPager>
-
-
-
-
-
                 </View>
                 <View style={{ flex: 20, flexDirection: 'column', justifyContent: 'center' }}>
                     <View style={{ flex: 3, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', marginLeft: 15, marginRight: 15 }}>
-                        <Text style={{ fontSize: 16, fontWeight: 'bold', flex: 10, justifyContent: 'center', color: '#fff' }}>{currentTime}</Text>
+                        <CountTime player={player} pause={pause} />
+                        <SeekBar player={player} pause={pause} onValueChange={this.onChangeSeekBarHandle} />
 
-                        <Slider
-                            
-                            minimumValue={0}
-                            maximumValue={1}
-                            minimumTrackTintColor="#009688"
-                            value={this.state.SliderValue}
-                            onValueChange={(ChangedValue) => this.SliderValueToTime(ChangedValue) }
-                            style={{ justifyContent: 'center', alignItems: 'center', flex: 70, height: 25 }}
-                        />
 
-                        <Text style={{ fontSize: 16, fontWeight: 'bold', flex: 10, justifyContent: 'center', color: '#fff' }}>{duration}</Text>
+                        <Text adjustsFontSizeToFit={true} style={{ fontWeight: 'bold', flex: 10, justifyContent: 'center', color: '#fff' }}>{duration}</Text>
 
                     </View>
                     <View style={{ flex: 7, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
-                        <TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonControl}>
                             <Image style={{ width: 50, height: 50, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
                                 source={require('./../../images/iconsuffle.png')} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonControl}>
                             <Image style={{ width: 60, height: 60, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
                                 source={require('./../../images/iconpreview.png')} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => { this.onPressButtonPause(song) }}>
+                        <TouchableOpacity style={styles.buttonControl} onPress={() => { this.onPressButtonPause(song) }}>
                             <Image style={{ width: 70, height: 70, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
                                 source={playpausse} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonControl}>
                             <Image style={{ width: 60, height: 60, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
                                 source={require('./../../images/iconnext.png')} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonControl}>
                             <Image style={{ width: 50, height: 50, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
                                 source={require('./../../images/iconrepeat.png')} />
                         </TouchableOpacity>
+                        
                     </View>
                 </View>
             </View>
@@ -193,5 +191,15 @@ class AudioPlayerFragement extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    buttonControl: {
+      flex: 20,
+      justifyContent: 'center',
+      alignItems:'center',
+      alignSelf: 'center',
+      // alignItems: 'center',    
+    },
+})
 
 export default AudioPlayerFragement;

@@ -21,7 +21,7 @@ import Main from './Main';
 import SongListFragment from './common/SongListFragment';
 import SongListContainer from '../containers/SongListContainer';
 import Home from './Home';
-import AudioPlayerFragement from './../components/common/AudioPlayerFragement';
+import AudioPlayerFragement from './../components/audio/AudioPlayerFragement';
 import {HOMESCREEN, SONGLISTSCREEN,PLAYLISTLAYOUTSCREEN,AUDIOPLAYERSCREEN} from './../constants/actionType';
 
 import GroupContainer from '../containers/GroupContainer';

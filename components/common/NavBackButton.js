@@ -9,8 +9,8 @@ import { I18nManager, Image, Platform, Text, TouchableOpacity, View } from 'reac
 import type { ColorPropType } from 'react-native';
 
 type Props = {
-    title?: string,
-    pressColorAndroid?: ColorPropType
+ //   title?: string,
+  //  pressColorAndroid?: ColorPropType
 };
 
 const NavBackButton = ({ title, pressColorAndroid,navigation }: Props) => (
@@ -31,8 +31,8 @@ const NavBackButton = ({ title, pressColorAndroid,navigation }: Props) => (
 );
 
 NavBackButton.defaultProps = {
-    title: 'Back',
-    pressColorAndroid: 'rgba(0, 0, 0, .2)'
+ //   title: 'Back',
+   // pressColorAndroid: 'rgba(0, 0, 0, .2)'
 };
 
 export default NavBackButton;

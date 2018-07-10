@@ -1,6 +1,7 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Duc Thanh Nguyen
+ * Music Application
+ * https://github.com/ducthanh512/MusicAPP.git
  * @flow
  */
 
@@ -14,7 +15,7 @@ import {
 } from 'react-native';
 var { width, height } = Dimensions.get('window');
 
-export default class DiskAnimation extends Component {
+export default class DiskAnimation1 extends Component {
   constructor(props) {
     super(props)
     this.state = {

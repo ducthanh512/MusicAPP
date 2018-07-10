@@ -8,12 +8,23 @@
 import React, { Component } from 'react';
 import { Text, Platform, View, ScrollView, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import { Icon } from 'native-base';
-
+import Toast from 'react-native-simple-toast';
 let screenwWidth = Dimensions.get('window').width;
 class SongList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            likedStatus: false,
+        }
 
+    }
     render() {
         var { song, index } = this.props;
+        var { likedStatus } = this.state;
+
+        var heartColor = likedStatus ? 'red' : 'black';
+        var iosHeart = likedStatus ? 'ios-heart' : 'ios-heart-outline';
+        var androidHeart = likedStatus ? 'md-heart' : 'md-heart-outline';
         //console.log('SongList', song);
         return (
 
@@ -42,10 +53,14 @@ class SongList extends Component {
                             }}>{song.singer}</Text>
 
                         </View>
-                        <View style={{ justifyContent: 'center', width: 30 }}>
-                            <Icon name={Platform.OS === 'ios' ? 'ios-heart-outline-outline' : 'md-heart-outline'} style={{ alignSelf: 'center', }} />
 
-                        </View>
+                        <TouchableOpacity disabled={likedStatus} style={{ justifyContent: 'center', width: 40 }}
+                            onPress={() => { this.setState({ likedStatus: true }); Toast.show('Liked'); }}>
+                            <View style={{ justifyContent: 'center', width: 30 }}>
+                                <Icon name={Platform.OS === 'ios' ? iosHeart : androidHeart} style={{ alignSelf: 'center', color: heartColor }} />
+
+                            </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={{ height: 1, backgroundColor: '#979797' }} />
 

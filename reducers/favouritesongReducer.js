@@ -11,7 +11,7 @@ const favouriteSongReducer = (state = initialState, action) => {
         case Types.FETCH_FAVOURITESONGS_SUCCEEDED:
             state = action.receivedFavouritesongs;
             return [...state]
-        default: return [...state]
+        default: return [...state] 
     }
 }
 
