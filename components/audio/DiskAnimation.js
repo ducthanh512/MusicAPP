@@ -96,10 +96,10 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   imageView: {
-    width: 350,
-    height: 350,
+    width: Dimensions.get('window').width*75/100,
+    height: Dimensions.get('window').width*75/100,
     backgroundColor: 'transparent',
     alignSelf: "center",
-    borderRadius: 350 / 2,
+    borderRadius: (Dimensions.get('window').width*75/100) / 2,
   }
 });

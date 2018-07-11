@@ -80,7 +80,7 @@ export default class SeekBar extends Component {
                 minimumTrackTintColor="#009688"
                 value={this.state.SliderValue}
                 onValueChange={(ChangedValue) => this.props.onValueChange(ChangedValue)}
-                style={{ justifyContent: 'center', alignItems: 'center', flex: 60, height: 20 }}
+                style={{ justifyContent: 'center', alignItems: 'center', flex: 60, height: 10 }}
             />
         );
     }
