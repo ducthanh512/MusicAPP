@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import { Text, Platform, View, ScrollView, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import { Icon } from 'native-base';
 import Toast from 'react-native-simple-toast';
+import {AUDIOPLAYERSCREEN} from './../../constants/actionType';
 let screenwWidth = Dimensions.get('window').width;
 class SongList extends Component {
     constructor(props) {
@@ -19,17 +20,22 @@ class SongList extends Component {
 
     }
     render() {
-        var { song, index } = this.props;
+        var { song, index,navigation } = this.props;
         var { likedStatus } = this.state;
 
         var heartColor = likedStatus ? 'red' : 'black';
         var iosHeart = likedStatus ? 'ios-heart' : 'ios-heart-outline';
         var androidHeart = likedStatus ? 'md-heart' : 'md-heart-outline';
+
+        var passedData = {
+            "type": "song",
+            "content" : song
+        }
         //console.log('SongList', song);
         return (
 
             <TouchableOpacity style={{ flex: 1, marginBottom: 10, padding: 10, backgroundColor: 'transparent' }}
-                onPress={() => { }}>
+            onPress={() => {navigation.navigate(AUDIOPLAYERSCREEN, passedData);  }}>
 
                 <View style={{ flex: 1, flexDirection: 'column' }}>
 

@@ -30,7 +30,7 @@ import SongList from './SongList';
 export default class SongListFragment extends Component {
 
   componentDidMount() {
-    console.log('Songlist Fragment componentDidMount');
+   // console.log('Songlist Fragment componentDidMount');
     var contentParam = this.props.navigation.state.params.content;
     var typeParam = this.props.navigation.state.params.type;
     this.props.resetSongList();
@@ -70,7 +70,7 @@ export default class SongListFragment extends Component {
     var { songs } = this.props;
     var contentParam = this.props.navigation.state.params.content;
     //console.log('SongList Render1!!', JSON.stringify(this.props.navigation));
-    console.log('SongList Render1!!', songs);
+    //console.log('SongList Render1!!', songs);
     // StatusBar.setHidden(false);
     const { navigation } = this.props;
 
@@ -154,7 +154,7 @@ export default class SongListFragment extends Component {
           }
           scrollEventThrottle={16}>
           {songs.map((song, index) => (
-            <SongList key={index} index={index} song={song} />
+            <SongList key={index} index={index} song={song} navigation={navigation} />
           ))}
         </ScrollView>
       </Animated.View>

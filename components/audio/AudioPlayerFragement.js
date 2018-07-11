@@ -60,7 +60,7 @@ class AudioPlayerFragement extends Component {
 
     onPressButtonPlay = (song) => {
         // alert('dcb');
-        player = new SoundPlayer('https://s1.mp3.aka.zdn.vn/e7563f83e7c70e9957d6/727637092126384063?authen=exp=1531284626~acl=/e7563f83e7c70e9957d6/*~hmac=888de179e19f474fef41fcbc8cfec2dc&filename=1234-Chi-Dan.mp3', null, (error) => {
+        player = new SoundPlayer(song.link, null, (error) => {
             if (error) {
                 Toast.show('Error when init SoundPlayer :(((');
                 console.log('hhe1', error);
@@ -149,16 +149,16 @@ class AudioPlayerFragement extends Component {
                     </IndicatorViewPager>
                 </View>
                 <View style={{ flex: 20, flexDirection: 'column', justifyContent: 'center' }}>
-                    <View style={{ flex: 3, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', marginLeft: 15, marginRight: 15 }}>
+                    <View style={{ flex: 3, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',alignItems: 'center', marginLeft: 15, marginRight: 15 }}>
                         <CountTime player={player} pause={pause} />
                         <SeekBar player={player} pause={pause} onValueChange={this.onChangeSeekBarHandle} />
 
 
-                        <Text adjustsFontSizeToFit={true} style={{ fontWeight: 'bold', flex: 10, justifyContent: 'center', color: '#fff' }}>{duration}</Text>
+                        <Text adjustsFontSizeToFit={true} style={{ fontWeight: 'bold', flex: 10, justifyContent: 'flex-end', color: '#fff' }}>{duration}</Text>
 
                     </View>
                     <View style={{ flex: 7, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
-                        <TouchableOpacity style={styles.buttonControl}>
+                    <TouchableOpacity style={styles.buttonControl}>
                             <Image style={{ width: 50, height: 50, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
                                 source={require('./../../images/iconsuffle.png')} />
                         </TouchableOpacity>
@@ -196,8 +196,10 @@ const styles = StyleSheet.create({
     buttonControl: {
       flex: 20,
       justifyContent: 'center',
-      alignItems:'center',
-      alignSelf: 'center',
+      alignItems:'flex-end',
+
+     // position: 'absolute', right: 0
+  
       // alignItems: 'center',    
     },
 })

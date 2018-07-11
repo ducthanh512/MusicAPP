@@ -51,7 +51,7 @@ export default class Banner extends Component {
     }
 
     _renderDotIndicator = (pageCount) => {
-        return <PagerDotIndicator pageCount={2} />;
+        return <PagerDotIndicator pageCount={pageCount} />;
     }
 
 
