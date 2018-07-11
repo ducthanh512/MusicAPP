@@ -215,7 +215,7 @@ class AudioPlayerFragement extends Component {
                     </IndicatorViewPager>
                 </View>
                 <View style={{ flex: 20, flexDirection: 'column', justifyContent: 'center' }}>
-                    <View style={{ flex: 3, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginLeft: 15, marginRight: 5 }}>
+                    <View style={{ flex: 3, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginLeft: 10, marginRight: 5 }}>
                         <CountTime player={player} pause={pause} />
                         <SeekBar player={player} pause={pause} onValueChange={this.onChangeSeekBarHandle} />
 
