@@ -6,7 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import { Text, Platform, View, ScrollView, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground, Slider, AppState,StyleSheet } from 'react-native';
+import { Text, Platform, View, ScrollView, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground, Slider, AppState, StyleSheet } from 'react-native';
 import NavBackButton from './../common/NavBackButton';
 import { IndicatorViewPager, PagerDotIndicator } from 'rn-viewpager';
 import DiskAnimation from '../audio/DiskAnimation';
@@ -14,6 +14,7 @@ import SongList from './../common/SongList';
 import Toast from 'react-native-simple-toast';
 import CountTime from './CountTime';
 import SeekBar from './SeekBar';
+import { Icon } from 'native-base';
 var SoundPlayer = require('react-native-sound');
 var player = null;
 class AudioPlayerFragement extends Component {
@@ -27,8 +28,11 @@ class AudioPlayerFragement extends Component {
             pause: false,
             duration: '00:00',
             currentTime: '00:00',
-            flagState :false,
+            flagState: false,
             appState: AppState.currentState,
+            songIndex: 0,
+            isRepeat : false,
+            isShuffle:false,
         }
     }
 
@@ -37,15 +41,16 @@ class AudioPlayerFragement extends Component {
     componentWillUnmount() {
         if (player != null) {
             player.stop();
-            //   this.setState({ pause: false });
+               this.setState({ pause: false });
         }
     }
 
 
     componentDidMount() {
 
-        var song = this.props.navigation.state.params.content;
-        this.onPressButtonPlay(song);
+           var songs = this.props.navigation.state.params.content;
+          var { songIndex } = this.state;
+           this.onPressButtonPlay(songs[songIndex]);
     }
 
     _renderDotIndicator = () => {
@@ -63,7 +68,7 @@ class AudioPlayerFragement extends Component {
         player = new SoundPlayer(song.link, null, (error) => {
             if (error) {
                 Toast.show('Error when init SoundPlayer :(((');
-                console.log('hhe1', error);
+              //  console.log('hhe1', error);
             }
             else {
                 this.setState({
@@ -74,7 +79,7 @@ class AudioPlayerFragement extends Component {
                 player.play((success) => {
                     if (!success) {
                         Toast.show('Error when play SoundPlayer :(((');
-                        console.log('hhe1', error);
+                      //  console.log('hhe1', error);
                     }
                 });
             }
@@ -107,9 +112,37 @@ class AudioPlayerFragement extends Component {
 
     }
 
+    onPressButtonNext = () => {
+        if (player != null) {
+            player.stop();
+        }
+
+        var { songIndex } = this.state;
+        var songs = this.props.navigation.state.params.content;
+        console.log('songs.length', songs.length);
+        songIndex = songIndex < songs.length - 1 ? songIndex + 1 : songIndex;
+        console.log('songIndex', songIndex);
+        this.onPressButtonPlay(songs[songIndex]);
+        this.setState({ songIndex })
+    }
+
+    onPressButtonPrevious = () => {
+        if (player != null) {
+            player.stop();
+        }
+
+        var { songIndex } = this.state;
+         var songs = this.props.navigation.state.params.content;
+        // console.log('songs.length', songs.length);
+        songIndex = songIndex > 0 ? songIndex - 1 : songIndex;
+        //  console.log('songIndex', songIndex);
+       this.onPressButtonPlay(songs[songIndex]);
+        this.setState({ songIndex })
+    }
+
 
     onChangeSeekBarHandle = (ChangedValue) => {
-        console.log('onChangeSeekBarHandle AudioPlayerFragement', ChangedValue);
+        // console.log('onChangeSeekBarHandle AudioPlayerFragement', ChangedValue);
         var seconds = ChangedValue * player.getDuration();
         player.setCurrentTime(seconds);
         this.setState({ flagState: !this.state.flagState });
@@ -119,13 +152,43 @@ class AudioPlayerFragement extends Component {
         // })
     }
 
-    render() {
-       
-        var { navigation } = this.props;
-        var { pause, duration, currentTime } = this.state;
-        var song = this.props.navigation.state.params.content;
+    onSelectSong = (index) => {
+        if (player != null) {
+            player.stop();
+        }
 
-        var playpausse = !pause ? require('./../../images/iconpause.png') : require('./../../images/iconplay.png');
+        var { songIndex } = this.state;
+          var songs = this.props.navigation.state.params.content;
+        // console.log('songs.length', songs.length);
+        songIndex = index;
+        //  console.log('songIndex', songIndex);
+          this.onPressButtonPlay(songs[songIndex]);
+        this.setState({ songIndex })
+    }
+
+    onPressButtonRepeat = ()=>{
+        this.setState({ isRepeat: !this.state.isRepeat });
+    }
+
+    onPressButtonShuffle = ()=>{
+        this.setState({ isShuffle: !this.state.isShuffle });
+    }
+
+    render() {
+
+        var { navigation } = this.props;
+        var { pause, duration, currentTime ,isShuffle, isRepeat} = this.state;
+         var songs = this.props.navigation.state.params.content;
+        var { songIndex } = this.state;
+          var song = songs[songIndex];
+
+        var iosPlayPauseButton = pause ? 'ios-play' : 'ios-pause';
+        var androidPauseButton = pause? 'md-play':'md-pause';
+
+        var shuffleButtonCollor =  isShuffle ? 'blue': 'white';
+        var repeatButtonCollor =  isRepeat ? 'blue': 'white';
+
+      //  var playpausse = !pause ? require('./../../images/iconpause.png') : require('./../../images/iconplay.png');
 
         console.log('AudioPlayerFragement Render pause:', pause);
         return (
@@ -138,7 +201,10 @@ class AudioPlayerFragement extends Component {
                         indicator={this._renderDotIndicator()}>
                         <View>
                             <ScrollView>
-                                <SongList index={0} song={song} />
+
+                                {songs.map((song, index) => (
+                                    <SongList key={index} onSelectSong={this.onSelectSong} songIndex={songIndex} index={index} song={song} navigation={navigation} audioPage={true} />
+                                ))}
                             </ScrollView>
 
                         </View>
@@ -149,7 +215,7 @@ class AudioPlayerFragement extends Component {
                     </IndicatorViewPager>
                 </View>
                 <View style={{ flex: 20, flexDirection: 'column', justifyContent: 'center' }}>
-                    <View style={{ flex: 3, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',alignItems: 'center', marginLeft: 15, marginRight: 15 }}>
+                    <View style={{ flex: 3, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginLeft: 15, marginRight: 5 }}>
                         <CountTime player={player} pause={pause} />
                         <SeekBar player={player} pause={pause} onValueChange={this.onChangeSeekBarHandle} />
 
@@ -158,31 +224,27 @@ class AudioPlayerFragement extends Component {
 
                     </View>
                     <View style={{ flex: 7, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', alignSelf: 'center' }}>
-                    <TouchableOpacity style={styles.buttonControl}>
-                            <Image style={{ width: 50, height: 50, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
-                                source={require('./../../images/iconsuffle.png')} />
+                        <TouchableOpacity style={styles.buttonControl}  onPress={() => { this.onPressButtonShuffle() }}>
+                        <Icon name={Platform.OS === 'ios' ? 'ios-shuffle' : 'md-shuffle'} style={{ alignSelf: 'center', fontSize: 50, color: shuffleButtonCollor }} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.buttonControl}>
-                            <Image style={{ width: 60, height: 60, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
-                                source={require('./../../images/iconpreview.png')} />
+                        <TouchableOpacity style={styles.buttonControl} onPress={() => { this.onPressButtonPrevious() }}>
+                        <Icon name={Platform.OS === 'ios' ? 'ios-skip-backward' : 'md-skip-backward'} style={{ alignSelf: 'center', fontSize: 50, color: '#ffffff' }} />
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.buttonControl} onPress={() => { this.onPressButtonPause(song) }}>
-                            <Image style={{ width: 70, height: 70, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
-                                source={playpausse} />
+                        <Icon name={Platform.OS === 'ios' ? iosPlayPauseButton : androidPauseButton} style={{ alignSelf: 'center', fontSize: 50, color: '#ffffff' }} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.buttonControl}>
-                            <Image style={{ width: 60, height: 60, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
-                                source={require('./../../images/iconnext.png')} />
+                        <TouchableOpacity style={styles.buttonControl} onPress={() => { this.onPressButtonNext() }}>
+                            <Icon name={Platform.OS === 'ios' ? 'ios-skip-forward' : 'md-skip-forward'} style={{ alignSelf: 'center', fontSize: 50, color: '#ffffff' }} />
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.buttonControl}>
-                            <Image style={{ width: 50, height: 50, marginRight: 15, aspectRatio: 1, resizeMode: 'contain', backgroundColor: 'transparent' }}
-                                source={require('./../../images/iconrepeat.png')} />
+                        <TouchableOpacity style={styles.buttonControl} onPress={() => { this.onPressButtonRepeat() }}>
+
+                            <Icon name={Platform.OS === 'ios' ? 'ios-repeat' : 'md-repeat'} style={{ alignSelf: 'center', fontSize: 50, color: repeatButtonCollor }} />
                         </TouchableOpacity>
-                        
+
                     </View>
                 </View>
             </View>
@@ -194,13 +256,13 @@ class AudioPlayerFragement extends Component {
 
 const styles = StyleSheet.create({
     buttonControl: {
-      flex: 20,
-      justifyContent: 'center',
-      alignItems:'flex-end',
+        flex: 20,
+        justifyContent: 'center',
+        alignItems: 'flex-end',
 
-     // position: 'absolute', right: 0
-  
-      // alignItems: 'center',    
+        // position: 'absolute', right: 0
+
+        // alignItems: 'center',    
     },
 })
 

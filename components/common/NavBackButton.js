@@ -7,7 +7,7 @@
 import React from 'react';
 import { I18nManager, Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import type { ColorPropType } from 'react-native';
-
+import { Icon } from 'native-base';
 type Props = {
  //   title?: string,
   //  pressColorAndroid?: ColorPropType
@@ -19,10 +19,7 @@ const NavBackButton = ({navigation }: Props) => (
         style={[styles.container,{marginTop: Platform.OS === 'ios' ? 34 : 0}]}
     >
         <View style={styles.flexRowCentered}>
-            <Image
-                style={[styles.icon, { tintColor: '#000' }]}
-                source={require('./../../images/back-icon.png')}
-            />
+        <Icon name={Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back'} style={{ alignSelf: 'center', fontSize: 30, color: '#ffffff' }} />
         </View>
     </TouchableOpacity>
 );

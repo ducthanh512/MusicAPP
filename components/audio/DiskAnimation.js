@@ -5,7 +5,6 @@
  * @flow
  */
 
-
 import React, { Component } from 'react';
 import {
   Platform,
@@ -15,81 +14,36 @@ import {
   Easing, Dimensions
 } from 'react-native';
 var { width, height } = Dimensions.get('window');
-var flagAnimation = false;
 
 export default class DiskAnimation extends Component {
   constructor(props) {
     super(props)
     this.state = {
       rotateValue: new Animated.Value(0),
-      animationPause: false,
     }
   }
 
 
   componentDidMount() {
-    //  var { animationPause } = this.state;
     this.rotateAnimation();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    var { pause } = nextProps;
-   // console.log('componentWillReceiveProps diskanimation pause:', pause);
-
-    this.setState({animationPause:pause})
-    flagAnimation = pause;
-
-    this.rotateAnimation();
-
   }
 
   rotateAnimation = () => {
-
-    var diskAnimation1 = Animated.timing(this.state.rotateValue, {
-      toValue: 100,
-      duration: 10000,
-      easing: Easing.linear
-    });
-
-    var diskAnimation2 = Animated.timing(this.state.rotateValue, {
-      toValue: 0,
-      duration: 0,
-    });
-
-   // console.log('animationPause diskAnimation0',flagAnimation );
-
-    if (flagAnimation) {
-      diskAnimation1.stop();
-      diskAnimation2.stop();
-      this.setState({rotateValue: new Animated.Value(0),})
-    }
-    else {
-      diskAnimation1.start(()=>{
-        var {animationPause} = this.state;
-       // console.log('animationPause diskAnimation1',flagAnimation );
-        if(flagAnimation){
-          diskAnimation1.stop();
-          diskAnimation2.stop();
-          this.setState({rotateValue: new Animated.Value(0),})
-        }
-        else{
-          diskAnimation2.start(()=>{
-            var animationPause2 = this.state.animationPause;
-          //  console.log('animationPause diskAnimation2',flagAnimation );
-            if(flagAnimation){
-              diskAnimation1.stop();
-              diskAnimation2.stop();
-              this.setState({rotateValue: new Animated.Value(0),})
-            }
-            else diskAnimation1.start();
-          })  
-        }
-      });
-    }
-
+    Animated.sequence([
+      Animated.timing(this.state.rotateValue, {
+        toValue: 100,
+        duration: 10000,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.rotateValue, {
+        toValue: 0,
+        duration: 0,
+      })
+    ]).start(() => {
+      this.rotateAnimation();
+    })
   }
   render() {
-    console.log('animationPause render');
     const { song } = this.props;
     const interpolationRotateAnimation = this.state.rotateValue.interpolate({
       inputRange: [0, 100],
@@ -97,12 +51,21 @@ export default class DiskAnimation extends Component {
     })
     return (
       <View style={styles.container}>
+        <View style={{ top:0, width:width, position: 'absolute', alignItems:'center', justifyContent:'center', alignSelf: 'center', }}>
+          <Text style={{ color: 'white', fontSize: 20, }}>{song.name}</Text>
+        </View>
+
         <Animated.Image
           source={{ uri: song.image }}
           style={[styles.imageView,
           { transform: [{ rotate: interpolationRotateAnimation }] }
           ]}>
         </Animated.Image>
+        {/* <TouchableOpacity style={styles.button}
+         onPress={this.rotateAnimation}
+        >
+          <Text style={styles.buttonText}>Animate</Text>
+        </TouchableOpacity> */}
       </View>
     );
   }
@@ -133,10 +96,10 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   imageView: {
-    width: Dimensions.get('window').width*75/100,
-    height: Dimensions.get('window').width*75/100,
+    width: 350,
+    height: 350,
     backgroundColor: 'transparent',
     alignSelf: "center",
-    borderRadius: (Dimensions.get('window').width*75/100) / 2,
+    borderRadius: 350 / 2,
   }
 });

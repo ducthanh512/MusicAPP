@@ -27,9 +27,10 @@ class FavouriteSong extends Component {
         var heartColor = likedStatus?'red':'black';
         var iosHeart = likedStatus?'ios-heart':'ios-heart-outline';
         var androidHeart = likedStatus?'md-heart':'md-heart-outline';
+        var songs = []; songs.push(song);
         var passedData = {
-            "type": "song",
-            "content" : song
+            "type": "songs",
+            "content" : songs
         }
         return (
             <View style={{ flex: 1, marginLeft: 10, marginRight: 10, marginBottom: 10 }}>

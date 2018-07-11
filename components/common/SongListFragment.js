@@ -18,19 +18,21 @@ import {
   StatusBar,
 } from 'react-native';
 import NavBackButton from './NavBackButton';
+import { AUDIOPLAYERSCREEN } from './../../constants/actionType';
+import SongList from './SongList';
 
 const HEADER_EXPANDED_HEIGHT = 300;
 const HEADER_COLLAPSED_HEIGHT = 110;
 const HEADER_IMAGE_BACKGROUND_EXPANDED_HEIGHT = HEADER_EXPANDED_HEIGHT - 60;
 const HEADER_IMAGE_BACKGROUND_COLLAPSED_HEIGHT = HEADER_COLLAPSED_HEIGHT - 60;
 let screenwWidth = Dimensions.get('window').width;
-const { width: SCREEN_WIDTH } = Dimensions.get("screen")
-import SongList from './SongList';
+const { width: SCREEN_WIDTH } = Dimensions.get("screen");
+
 
 export default class SongListFragment extends Component {
 
   componentDidMount() {
-   // console.log('Songlist Fragment componentDidMount');
+    // console.log('Songlist Fragment componentDidMount');
     var contentParam = this.props.navigation.state.params.content;
     var typeParam = this.props.navigation.state.params.type;
     this.props.resetSongList();
@@ -73,6 +75,11 @@ export default class SongListFragment extends Component {
     //console.log('SongList Render1!!', songs);
     // StatusBar.setHidden(false);
     const { navigation } = this.props;
+
+    var passedData = {
+      "type": "songs",
+      "content": songs
+    }
 
     const headerHeight = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_EXPANDED_HEIGHT - HEADER_COLLAPSED_HEIGHT],
@@ -133,7 +140,7 @@ export default class SongListFragment extends Component {
             position: 'absolute', bottom: 0, height: 90, width: 110, justifyContent: 'center', alignSelf: 'center',
           }}>
             <TouchableOpacity style={{ bottom: 0, justifyContent: 'center' }}
-              onPress={() => { }}>
+              onPress={() => {navigation.navigate(AUDIOPLAYERSCREEN, passedData);  }}>
               <Image
                 style={{ height: 90, width: 110, resizeMode: 'cover', borderRadius: 10 }}
                 source={require('./../../images/Yugioh2.png')} />
