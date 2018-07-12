@@ -10,8 +10,8 @@ import {put,takeLatest,takeEvery} from 'redux-saga/effects';
 import {Api} from './Api';
 
 function* fetchAlbums(){
-const apiAlbums  = "https://musicappservice.herokuapp.com/music/album"
-
+    const endpoint = "music/album";
+    const apiAlbums = `${Types.ApiServer}/${endpoint}`;
     console.log('fetchAlbums saga');
     try{
         const receivedAlbums = yield Api.getApi(apiAlbums);
@@ -30,7 +30,8 @@ export function* watchFetchAlbums(){
 
 
 function* fetchAllAlbums(){
-    const apiGetAllAlbums = "https://musicappservice.herokuapp.com/music/allalbums"
+    const endpoint = "music/allalbums";
+    const apiGetAllAlbums = `${Types.ApiServer}/${endpoint}`;
     try{
         const receivedAllAlbums = yield Api.getApi(apiGetAllAlbums);
         yield put({type: Types.FETCH_ALL_ALBUMS_SUCCEEDED, receivedAllAlbums,})

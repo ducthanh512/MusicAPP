@@ -11,7 +11,8 @@ import { Api } from './Api';
 
 /* Saga for Favourite Songs*/
 function* fetchFavouriteSongs() {
-    const apiFavouritesongs = "https://musicappservice.herokuapp.com/music/favouritesongs"
+    const endpoint = "music/favouritesongs";
+    var apiFavouritesongs = `${Types.ApiServer}/${endpoint}`;
     try {
         const receivedFavouritesongs = yield Api.getApi(apiFavouritesongs);
         yield put({ type: Types.FETCH_FAVOURITESONGS_SUCCEEDED, receivedFavouritesongs, })
@@ -29,7 +30,8 @@ export function* watchFavouritesongs() {
 
 /* Saga for Advert Songs*/
 function* fetchAdvertSongs(action) {
-    let apiAdvertSongs = "https://musicappservice.herokuapp.com/music/advertsongs"
+    const endpoint = "music/advertsongs";
+    var apiAdvertSongs = `${Types.ApiServer}/${endpoint}`;
     try {
         apiAdvertSongs = `${apiAdvertSongs}/${action.id}`;
         const receiveAdvertSongs = yield Api.getApi(apiAdvertSongs);
@@ -49,7 +51,8 @@ export function* watchAdvertSongs() {
 
 /* Saga for PlayList Songs*/
 function* fetchPlayListSongs(action) {
-    let apiPlayListSongs = "https://musicappservice.herokuapp.com/music/playlistsongs"
+    const endpoint = "music/playlistsongs";
+    var apiPlayListSongs = `${Types.ApiServer}/${endpoint}`;
     try {
         apiPlayListSongs = `${apiPlayListSongs}/${action.id}`;
         console.log('apiPlayListSongs saga id', apiPlayListSongs);
@@ -70,7 +73,8 @@ export function* watchPlayListSongs() {
 
 /* Saga for Genre Songs*/
 function* fetchGenreSongs(action) {
-    let apiGenreSongs = "https://musicappservice.herokuapp.com/music/genresongs"
+    const endpoint = "music/genresongs";
+    var apiGenreSongs = `${Types.ApiServer}/${endpoint}`;
     try {
         apiGenreSongs = `${apiGenreSongs}/${action.id}`;
         console.log('apiGenreSongs saga id', apiGenreSongs);
@@ -92,7 +96,8 @@ export function* watchGenreSongs() {
 
 /* Saga for Album Songs*/
 function* fetchAlbumSongs(action) {
-    let apiAlbumSongs = "https://musicappservice.herokuapp.com/music/albumsongs"
+    const endpoint = "music/albumsongs";
+    var apiAlbumSongs = `${Types.ApiServer}/${endpoint}`;
     try {
         apiAlbumSongs = `${apiAlbumSongs}/${action.id}`;
         console.log('apiAlbumSongs saga id', apiAlbumSongs);

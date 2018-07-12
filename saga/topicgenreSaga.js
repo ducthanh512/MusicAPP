@@ -11,8 +11,11 @@ import { Api } from './Api';
 
 function* fetchTopicGenres() {
     console.log('fetchTopicGenres saga');
-    const apiGetTopics = "https://musicappservice.herokuapp.com/music/topic"
-    const apiGetGenres = "https://musicappservice.herokuapp.com/music/genre"
+    const endpointTopic = "music/topic";
+    const apiGetTopics = `${Types.ApiServer}/${endpointTopic}`;
+
+    const endpointGenre = "music/genre";
+    const apiGetGenres = `${Types.ApiServer}/${endpointGenre}`;
     try {
         const receivedTopics = yield Api.getApi(apiGetTopics);
         const receivedGenres = yield Api.getApi(apiGetGenres);
@@ -32,7 +35,8 @@ export function* watchFetchTopicGenres() {
 
 
 function* fetchAllGenres(){
-    const apiGetAllGenres = "https://musicappservice.herokuapp.com/music/allgenres"
+    const endpointTopic = "music/allgenres";
+    const apiGetAllGenres = `${Types.ApiServer}/${endpointTopic}`;
     try{
         const receivedAllGenres = yield Api.getApi(apiGetAllGenres);
         yield put({type: Types.FETCH_ALL_GENRE_SUCCEEDED, receivedAllGenres,})
