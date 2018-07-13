@@ -25,12 +25,15 @@ export default class CountTime extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.interval) clearInterval(this.interval);
-        var { player, pause } = nextProps;
+        this.setState({
+            currentTime: '00:00',
+        })
+        var { player, pause,isLoading } = nextProps;
         //console.log('componentWillReceiveProps player', pause);
         var count = 0;
 
 
-        if (player != null) {
+        if (player != null && !isLoading) {
             if (!pause) {
                 if (player) {
                     player.getCurrentTime((seconds) => {

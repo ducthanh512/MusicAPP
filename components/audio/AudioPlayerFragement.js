@@ -15,6 +15,7 @@ import Toast from 'react-native-simple-toast';
 import CountTime from './CountTime';
 import SeekBar from './SeekBar';
 import { Icon } from 'native-base';
+import Loader from 'react-native-modal-loader';
 var SoundPlayer = require('react-native-sound');
 var player = null;
 class AudioPlayerFragement extends Component {
@@ -33,10 +34,17 @@ class AudioPlayerFragement extends Component {
             songIndex: 0,
             isRepeat : false,
             isShuffle:false,
+            isLoading: false
         }
     }
 
+    showLoader = () => {
+        this.setState({ isLoading: true });
+      };
 
+      hideLoader = () => {
+        this.setState({ isLoading: false });
+      };
 
     componentWillUnmount() {
         if (player != null) {
@@ -65,12 +73,17 @@ class AudioPlayerFragement extends Component {
 
     onPressButtonPlay = (song) => {
         // alert('dcb');
+        this.showLoader();
+        this.setState({
+            duration: '00:00',
+        })
         player = new SoundPlayer(song.link, null, (error) => {
             if (error) {
                 Toast.show('Error when init SoundPlayer :(((');
               //  console.log('hhe1', error);
             }
             else {
+                this.hideLoader();
                 this.setState({
                     duration: this.millisToMinutesAndSeconds(player.getDuration() * 1000),
                 })
@@ -179,7 +192,7 @@ class AudioPlayerFragement extends Component {
         var { navigation } = this.props;
         var { pause, duration, currentTime ,isShuffle, isRepeat} = this.state;
          var songs = this.props.navigation.state.params.content;
-        var { songIndex } = this.state;
+        var { songIndex,isLoading } = this.state;
           var song = songs[songIndex];
 
         var iosPlayPauseButton = pause ? 'ios-play' : 'ios-pause';
@@ -193,6 +206,7 @@ class AudioPlayerFragement extends Component {
         console.log('AudioPlayerFragement Render pause:', pause);
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#4e1676' }}>
+            <Loader loading={this.state.isLoading} color="#ff66be" />
                 <NavBackButton navigation={navigation} title='Music App' />
 
                 <View style={{ marginTop: 40, flex: 80, }}>
@@ -216,8 +230,8 @@ class AudioPlayerFragement extends Component {
                 </View>
                 <View style={{ flex: 20, flexDirection: 'column', justifyContent: 'center' }}>
                     <View style={{ flex: 3, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginLeft: 5, marginRight: 5 }}>
-                        <CountTime player={player} pause={pause} />
-                        <SeekBar player={player} pause={pause} onValueChange={this.onChangeSeekBarHandle} />
+                        <CountTime player={player} pause={pause} isLoading={isLoading} />
+                        <SeekBar player={player} pause={pause} isLoading={isLoading} onValueChange={this.onChangeSeekBarHandle} />
 
 
                         <Text adjustsFontSizeToFit={true} style={{ fontWeight: 'bold', flex: 10, justifyContent: 'flex-end', color: '#fff' }}>{duration}</Text>
