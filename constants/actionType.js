@@ -9,7 +9,7 @@ export  {
     AUDIOPLAYERSCREEN
 };
 
-export const ApiServer = "http://ec2-18-206-248-95.compute-1.amazonaws.com:3000";
+export const ApiServer = "https://musicappservice.herokuapp.com";
 
 export const FETCH_QUESTIONS = "FETCH_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
