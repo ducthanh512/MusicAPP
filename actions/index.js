@@ -102,3 +102,10 @@ export const fetchAlbumSongs = (id) =>{
         type: Types.FETCH_ALBUM_SONGS,id,
     }
 }
+
+
+export const searchSongs = (name) =>{
+    return {
+        type: Types.SEARCH_SONGS,name,
+    }
+}

@@ -13,6 +13,8 @@ import AudioExample from './components/common/AudioExample';
 import { createStore,applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import appReducers from './reducers/index';
+import SearchFragment from './components/SearchFragment';
+
 
 //Redux saga
 import createSagaMiddleware from 'redux-saga';

@@ -26,6 +26,12 @@ const songListReducer = (state = initialState, action) => {
             state = action.receivedAlbumSongs;
             return [...state]
 
+        case Types.SEARCH_SONGS_SUCCEEDED:
+            console.log('new song reducer SEARCH_SONGS_SUCCEEDED');
+            state = action.receivedSearchSongs;
+            return [...state]
+
+
         case Types.RESET_SONG_LIST:
             console.log('new song reducer RESET_SONG_LIST');
             return [...initialState]

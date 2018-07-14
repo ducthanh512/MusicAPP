@@ -8,8 +8,10 @@ import { Platform } from 'react-native';
 
 
 import Home from './Home';
-import Search from './Search';
+import SearchFragment from './SearchFragment';
+import SearchContainer from './../containers/SearchContainer';
 import NavigatorPage from './NavigatorPage';
+import SearchNavigator from './SearchNavigator';
 
 /**
  * Duc Thanh Nguyen
@@ -58,7 +60,7 @@ const MainNavigator = createBottomTabNavigator(
         //   />,
 
         Search: {
-            screen: Search
+            screen: SearchNavigator
         },
     }, {
         animationEnabled: true,

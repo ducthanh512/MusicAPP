@@ -20,7 +20,7 @@ class SongList extends Component {
 
     }
     render() {
-        var { song, index, navigation, audioPage, songIndex } = this.props;
+        var { song, index, navigation, audioPage, songIndex, search } = this.props;
         var { likedStatus } = this.state;
 
         var heartColor = likedStatus ? 'red' : 'white';

@@ -113,3 +113,25 @@ function* fetchAlbumSongs(action) {
 export function* watchAlbumSongs() {
     yield takeEvery(Types.FETCH_ALBUM_SONGS, fetchAlbumSongs);
 }
+
+
+/* Saga for Search Songs*/
+function* searchSongs(action) {
+    const endpoint = "music/search";
+    var apiSearchSongs = `${Types.ApiServer}/${endpoint}`;
+    try {
+        apiSearchSongs = `${apiSearchSongs}/${action.name}`;
+        console.log('apiSearchSongs saga id', apiSearchSongs);
+        const receivedSearchSongs = yield Api.getApi(apiSearchSongs);
+        yield put({ type: Types.SEARCH_SONGS_SUCCEEDED, receivedSearchSongs, })
+
+    } catch (error) {
+        yield put({ type: Types.FETCH_FAILED, error })
+    }
+}
+
+
+export function* watchSearchSongs() {
+    yield takeEvery(Types.SEARCH_SONGS, searchSongs);
+}
+
