@@ -50,7 +50,7 @@ class GroupFragment extends Component {
         var newGroups = this.createNewGroup(groups);
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'white' }}>
-                <NavBackButton navigation={navigation} title={typeParam} />
+                <NavBackButton navigation={navigation} title={typeParam} group = {true} />
 
                 <ScrollView style={{ marginTop: 40 }} showsVerticalScrollIndicator={false}>
 
