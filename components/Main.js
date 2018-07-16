@@ -24,6 +24,11 @@ import { HOMESCREEN, SONGLISTSCREEN, PLAYLISTLAYOUTSCREEN, AUDIOPLAYERSCREEN } f
 
 import { YellowBox } from 'react-native';
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated']);
+
+YellowBox.ignoreWarnings(['Class RCTCxxModule']);
+YellowBox.ignoreWarnings(['Module AudioRecorderManager']);
+YellowBox.ignoreWarnings(['Module RCTImageLoader']);
+
 // YellowBox.ignoreWarnings(['TabNavigator is deprecated']);
 // YellowBox.ignoreWarnings(['Method `jumpToIndex`']);
 //console.disableYellowBox = true; 
