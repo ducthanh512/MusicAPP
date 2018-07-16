@@ -17,6 +17,7 @@ import SeekBar from './SeekBar';
 import { Icon } from 'native-base';
 import Loader from 'react-native-modal-loader';
 var SoundPlayer = require('react-native-sound');
+SoundPlayer.setCategory('Playback');
 var player = null;
 class AudioPlayerFragement extends Component {
     static navigationOptions = {
