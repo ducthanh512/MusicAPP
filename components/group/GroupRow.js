@@ -22,16 +22,17 @@ class GroupRow extends Component {
             <View style={{ flex: 1, flexDirection: 'column' }}>
 
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <View style={{ flex: 2 }}></View>
-                    <View style={{ flex: 49, justifyContent: 'center' }}>
+                    
+                    <View style={{ flex: 40, justifyContent: 'center' }}>
                         <GroupItem typeParam={typeParam} group={groupLeft} navigation={navigation} />
                     </View>
+                    <View style={{ flex: 1 }}></View>
                     {(groupRight.name && groupRight.name.length !== "undefined") ?
-                        <View style={{ flex: 49, justifyContent: 'center' }}>
+                        <View style={{ flex: 40, justifyContent: 'center' }}>
                             <GroupItem typeParam={typeParam} group={groupRight} navigation={navigation} />
-                        </View> : <View style={{ flex: 49 }}></View>
+                        </View> : <View style={{ flex: 40 }}></View>
                     }
-                    <View style={{ flex: 2 }}></View>
+                    <View style={{ flex: 1, marginRight:10}}></View>
 
                 </View>
 
