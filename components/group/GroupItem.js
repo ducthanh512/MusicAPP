@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 import { Text, Platform, View, ScrollView, Image, Dimensions, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
 import {SONGLISTSCREEN} from './../../constants/actionType';
+var { width, height } = Dimensions.get('window');
 class GroupItem extends Component {
 
     render() {
@@ -19,10 +20,10 @@ class GroupItem extends Component {
         // alert(playlist.image);
         return (
 
-            <TouchableOpacity style={{ flex: 1, marginLeft:10,height: 220, width: 180,}}
+            <TouchableOpacity style={{ flex: 1, marginLeft:10,height: ((width-15)/2)+40, width: (width-15)/2,}}
                 onPress={() => {navigation.navigate(SONGLISTSCREEN, passedData);}}>
                 <Image
-                    style={{ height: 180, width: 180, zIndex: 1, resizeMode: 'cover', borderRadius: 10, }}
+                    style={{ height: (width-15)/2, width: (width-15)/2, zIndex: 1, resizeMode: 'cover', borderRadius: 10, }}
                     source={{uri:group.image}} />
                     <Text numberOfLines={2} style={{marginLeft:2, fontSize:15, alignSelf:'center'}}>{group.name}</Text>
             </TouchableOpacity>
