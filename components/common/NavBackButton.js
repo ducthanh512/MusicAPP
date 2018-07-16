@@ -16,7 +16,7 @@ type Props = {
 const NavBackButton = ({navigation }: Props) => (
     <TouchableOpacity
         onPress={()=>{navigation.goBack()}}
-        style={[styles.container,{marginTop: Platform.OS === 'ios' ? 34 : 0}]}
+        style={[styles.container,{marginTop: Platform.OS === 'ios' ? 37 : 0}]}
     >
         <View style={styles.flexRowCentered}>
         <Icon name={Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back'} style={{ alignSelf: 'center', fontSize: 30, color: '#ffffff' }} />

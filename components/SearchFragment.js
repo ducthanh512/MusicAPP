@@ -40,7 +40,7 @@ class SearchFragment extends Component {
     render() {
         const { navigation, songs } = this.props;
         return (
-            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center',marginTop: Platform.OS === 'ios' ? 34 : 0 }}>
                 <View style={{ flex: 10, backgroundColor: '#4e1676', justifyContent: 'center' }}>
 
                     <Makiko
