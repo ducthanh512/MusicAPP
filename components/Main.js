@@ -57,7 +57,7 @@ const HomeNavigator = createStackNavigator({
     screen: SongListContainer,
   },
   AUDIOPLAYERSCREEN: {
-    screen: AudioStreamerFragement,
+    screen: AudioPlayerFragement,
   }
 }
   ,

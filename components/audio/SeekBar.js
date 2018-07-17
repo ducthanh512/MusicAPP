@@ -31,15 +31,15 @@ export default class SeekBar extends Component {
         if (this.interval) clearInterval(this.interval);
         var { player,pause } = nextProps;
         //console.log('componentWillReceiveProps Seekbar', player);
-       // var count = 0;
+        var count = 0;
         if (player != null) {
             if (!pause)
             {
-               // if (player) player.getCurrentTime((seconds) => count = seconds)
+                if (player) player.getCurrentTime((seconds) => count = seconds)
                 this.interval = setInterval(() => {
                     //count++;
                     this.setState({
-                        SliderValue: this.timeToSliderValue(player.currentTime,player.duration),
+                        SliderValue: this.timeToSliderValue(count, player.getDuration()),
                     })
         
                 }, 300);

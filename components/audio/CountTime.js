@@ -25,37 +25,37 @@ export default class CountTime extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.interval) clearInterval(this.interval);
-        // this.setState({
-        //     currentTime: '00:00',
-        // })
+        this.setState({
+            currentTime: '00:00',
+        })
         var { player, pause, isLoading } = nextProps;
         //console.log('componentWillReceiveProps player', pause);
-      //  var count = 0;
+       var count = 0;
 
 
         if (player != null && !isLoading) {
             if (!pause) {
                 if (player) {
-                    // player.getCurrentTime((seconds) => {
-                    //     count = seconds;
-                    //     this.setState({
-                    //         currentTime: this.millisToMinutesAndSeconds(seconds * 1000),
-                    //     })
-                    // })
-            
-                    this.setState({
-                        currentTime: this.millisToMinutesAndSeconds(player.currentTime),
+                    player.getCurrentTime((seconds) => {
+                        count = seconds;
+                        this.setState({
+                            currentTime: this.millisToMinutesAndSeconds(seconds * 1000),
+                        })
                     })
+            
+                    // this.setState({
+                    //     currentTime: this.millisToMinutesAndSeconds(player.currentTime),
+                    // })
 
                 }
                 this.interval = setInterval(() => {
-                   // count++;
+                    count++;
                 //  console.log('loop',this.millisToMinutesAndSeconds(player.currentTime));
                     this.setState({
-                        currentTime: this.millisToMinutesAndSeconds(player.currentTime),
+                        currentTime: this.millisToMinutesAndSeconds(count * 1000),
                     })
 
-                }, 300);
+                }, 1000);
             }
             else if (this.interval) clearInterval(this.interval);
 
