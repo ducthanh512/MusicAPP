@@ -15,7 +15,6 @@ import { Provider } from 'react-redux';
 import appReducers from './reducers/index';
 import SearchFragment from './components/SearchFragment';
 import AudioStreamerFragement from './components/audio/AudioStreamerFragement';
-import AudioStreamer from './components/audio/AudioStreamer';
 
 //Redux saga
 import createSagaMiddleware from 'redux-saga';
