@@ -65,6 +65,7 @@
 		EEAF098C09794BD5B08B701F /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DAF10C38FBF444DB9610700 /* Feather.ttf */; };
 		F50944060DD14C8293EBCB88 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BDA80E6BB7E42D494AC9E7E /* Foundation.ttf */; };
 		F5DB99AC480A40C8BB91E47B /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E0ABC8A8C1AB4C2CA24D028C /* Roboto_medium.ttf */; };
+		AD12D1FCD3CF4073927BF172 /* libReactNativeAudioToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9FEA1B66B6943E782222DEA /* libReactNativeAudioToolkit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -431,6 +432,8 @@
 		E0ABC8A8C1AB4C2CA24D028C /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		ED698B4F3F0648E38B4658D7 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		F39A6EC9657C4BA2B7B730E1 /* LRDRCTSimpleToast.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = LRDRCTSimpleToast.xcodeproj; path = "../node_modules/react-native-simple-toast/ios/LRDRCTSimpleToast.xcodeproj"; sourceTree = "<group>"; };
+		E20542AA7F29496C8F04FE00 /* ReactNativeAudioToolkit.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeAudioToolkit.xcodeproj"; path = "../node_modules/react-native-audio-toolkit/ios/ReactNativeAudioToolkit/ReactNativeAudioToolkit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A9FEA1B66B6943E782222DEA /* libReactNativeAudioToolkit.a */ = {isa = PBXFileReference; name = "libReactNativeAudioToolkit.a"; path = "libReactNativeAudioToolkit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -463,6 +466,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				AD12D1FCD3CF4073927BF172 /* libReactNativeAudioToolkit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,6 +701,7 @@
 				F39A6EC9657C4BA2B7B730E1 /* LRDRCTSimpleToast.xcodeproj */,
 				20779B61A3E7458EBAFEA9FC /* RNAudio.xcodeproj */,
 				589748A533904C5F8146542E /* RNSound.xcodeproj */,
+				E20542AA7F29496C8F04FE00 /* ReactNativeAudioToolkit.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1425,12 +1430,14 @@
 					"$(SRCROOT)..\node_modules\neact-native-streaming-audio-playeriosRNAudioPlayer",
 					"$(SRCROOT)..\node_modules\neact-native-audioios",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
 				);
 				INFOPLIST_FILE = MusicAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1459,12 +1466,14 @@
 					"$(SRCROOT)..\node_modules\neact-native-streaming-audio-playeriosRNAudioPlayer",
 					"$(SRCROOT)..\node_modules\neact-native-audioios",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
 				);
 				INFOPLIST_FILE = MusicAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1494,6 +1503,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-streaming-audio-playeriosRNAudioPlayer",
 					"$(SRCROOT)..\node_modules\neact-native-audioios",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
 				);
 				INFOPLIST_FILE = MusicApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1521,6 +1531,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-streaming-audio-playeriosRNAudioPlayer",
 					"$(SRCROOT)..\node_modules\neact-native-audioios",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
 				);
 				INFOPLIST_FILE = MusicApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1554,11 +1565,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-streaming-audio-playeriosRNAudioPlayer",
 					"$(SRCROOT)..\node_modules\neact-native-audioios",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
 				);
 				INFOPLIST_FILE = "MusicApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1596,11 +1609,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-streaming-audio-playeriosRNAudioPlayer",
 					"$(SRCROOT)..\node_modules\neact-native-audioios",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
 				);
 				INFOPLIST_FILE = "MusicApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1637,11 +1652,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-streaming-audio-playeriosRNAudioPlayer",
 					"$(SRCROOT)..\node_modules\neact-native-audioios",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
 				);
 				INFOPLIST_FILE = "MusicApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1678,11 +1695,13 @@
 					"$(SRCROOT)..\node_modules\neact-native-streaming-audio-playeriosRNAudioPlayer",
 					"$(SRCROOT)..\node_modules\neact-native-audioios",
 					"$(SRCROOT)..\node_modules\neact-native-soundRNSound",
+					"$(SRCROOT)\..\node_modules\react-native-audio-toolkit\ios\ReactNativeAudioToolkit/**",
 				);
 				INFOPLIST_FILE = "MusicApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

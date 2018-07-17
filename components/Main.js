@@ -18,6 +18,7 @@ import SearchContainer from './../containers/SearchContainer';
 import GroupContainer from '../containers/GroupContainer';
 import SongListContainer from '../containers/SongListContainer';
 import AudioPlayerFragement from './../components/audio/AudioPlayerFragement';
+import AudioStreamerFragement from './../components/audio/AudioStreamerFragement';
 import { HOMESCREEN, SONGLISTSCREEN, PLAYLISTLAYOUTSCREEN, AUDIOPLAYERSCREEN } from './../constants/actionType';
 
 
@@ -56,7 +57,7 @@ const HomeNavigator = createStackNavigator({
     screen: SongListContainer,
   },
   AUDIOPLAYERSCREEN: {
-    screen: AudioPlayerFragement,
+    screen: AudioStreamerFragement,
   }
 }
   ,
@@ -74,7 +75,7 @@ const SearchNavigator = createStackNavigator({
     screen: SearchContainer,
   },
   AUDIOPLAYERSCREEN: {
-    screen: AudioPlayerFragement,
+    screen: AudioStreamerFragement,
   }
 
 },

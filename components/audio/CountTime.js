@@ -25,35 +25,37 @@ export default class CountTime extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.interval) clearInterval(this.interval);
-        this.setState({
-            currentTime: '00:00',
-        })
-        var { player, pause,isLoading } = nextProps;
+        // this.setState({
+        //     currentTime: '00:00',
+        // })
+        var { player, pause, isLoading } = nextProps;
         //console.log('componentWillReceiveProps player', pause);
-        var count = 0;
+      //  var count = 0;
 
 
         if (player != null && !isLoading) {
             if (!pause) {
                 if (player) {
-                    player.getCurrentTime((seconds) => {
-                        count = seconds;
-                        this.setState({
-                            currentTime: this.millisToMinutesAndSeconds(seconds * 1000),
-                        })
+                    // player.getCurrentTime((seconds) => {
+                    //     count = seconds;
+                    //     this.setState({
+                    //         currentTime: this.millisToMinutesAndSeconds(seconds * 1000),
+                    //     })
+                    // })
+            
+                    this.setState({
+                        currentTime: this.millisToMinutesAndSeconds(player.currentTime),
                     })
 
                 }
                 this.interval = setInterval(() => {
-                    count++;
-                    //  console.log('loop', count);
+                   // count++;
+                //  console.log('loop',this.millisToMinutesAndSeconds(player.currentTime));
                     this.setState({
-                        currentTime: this.millisToMinutesAndSeconds(count * 1000),
-                        //   count:count,
-                        //  SliderValue: this.timeToSliderValue(seconds),
+                        currentTime: this.millisToMinutesAndSeconds(player.currentTime),
                     })
 
-                }, 1000);
+                }, 300);
             }
             else if (this.interval) clearInterval(this.interval);
 

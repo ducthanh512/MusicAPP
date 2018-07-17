@@ -23,26 +23,26 @@ export default class SeekBar extends Component {
         return (minutes < 10 ? '0' : '') + minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
     }
 
-    timeToSliderValue = (seconds,player) => {
-        return seconds / player.getDuration();
+    timeToSliderValue = (seconds,duration) => {
+        return seconds / duration;
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.interval) clearInterval(this.interval);
         var { player,pause } = nextProps;
         //console.log('componentWillReceiveProps Seekbar', player);
-        var count = 0;
+       // var count = 0;
         if (player != null) {
             if (!pause)
             {
-                if (player) player.getCurrentTime((seconds) => count = seconds)
+               // if (player) player.getCurrentTime((seconds) => count = seconds)
                 this.interval = setInterval(() => {
-                    count++;
+                    //count++;
                     this.setState({
-                        SliderValue: this.timeToSliderValue(count,player),
+                        SliderValue: this.timeToSliderValue(player.currentTime,player.duration),
                     })
         
-                }, 1000);
+                }, 300);
             } 
             else  if (this.interval) clearInterval(this.interval);
         }
@@ -53,22 +53,6 @@ export default class SeekBar extends Component {
 
     componentWillUnmount() {
         clearInterval(this.interval);
-    }
-
-    onSetCurrentTime = () => {
-
-        var { player } = this.props;
-        this.interval = setInterval(() => {
-            player.getCurrentTime((seconds) => {
-                //  console.log('slider ',seconds, this.timeToSliderValue(seconds));
-                this.setState({
-                    currentTime: this.millisToMinutesAndSeconds(seconds * 1000),
-                    //  SliderValue: this.timeToSliderValue(seconds),
-                })
-
-            }, 300);
-
-        });
     }
 
     render() {
